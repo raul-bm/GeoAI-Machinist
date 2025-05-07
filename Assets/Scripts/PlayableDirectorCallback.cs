@@ -51,6 +51,8 @@ public class PlayableDirectorCallback : MonoBehaviour
             Player.TurnRight();
             NextLine();
             dialogueBalloon.OnDone += NextLine;
+
+            Player.Disable();
         }
     }
 
@@ -123,6 +125,8 @@ public class PlayableDirectorCallback : MonoBehaviour
 
         endAnimation.Play();
         transitionFloor.SetActive(true);
+
+        Player.Enable();
     }
 
     public void ZoomIn()

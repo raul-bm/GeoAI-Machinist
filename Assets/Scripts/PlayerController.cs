@@ -45,11 +45,16 @@ public class PlayerController : MonoBehaviour
     {
         isEnabled = false;
         rb.velocity = new(0f, 0f);
+
+        //Disable the animations
+        animator.SetBool("movementDisabled", true);
     }
 
     public void Enable()
     {
         isEnabled = true;
+
+        animator.SetBool("movementDisabled", false);
     }
 
     public bool IsGrabbing()
