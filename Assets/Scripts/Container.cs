@@ -13,7 +13,7 @@ public class Container : MonoBehaviour
 
     public string type;
     private Animator animator;
-    private TextMeshPro label;
+    [SerializeField] private TextMeshPro label;
     private float verticalOffset = 0.3f;
 
     // Audio
@@ -21,10 +21,11 @@ public class Container : MonoBehaviour
     public AudioClip mismatchClip;
     public AudioClip matchClip;
 
+    [SerializeField] private GameObject spaceHint;
+
     // Start is called before the first frame update
     void Start()
     {
-        label = gameObject.transform.GetChild(0).gameObject.GetComponent<TextMeshPro>();
         label.text = SplitCamelCase(type);
 
         animator = GetComponent<Animator>();
@@ -55,6 +56,8 @@ public class Container : MonoBehaviour
         OnMatch?.Invoke();
         OnMatchDisplay?.Invoke(type);
         matched = true;
+
+        spaceHint.SetActive(false);
     }
 
     public bool IsMatch(SampleBox sampleBox)
@@ -78,6 +81,12 @@ public class Container : MonoBehaviour
     {
         // Debug.Log(" container on trigger enter 2d " + other.tag);
         OnHover?.Invoke(type);
+
+        // Check if the player have a SampleBox to show the Hint
+        if(other.gameObject.tag == "Player" && other.transform.GetChild(0) != null && other.transform.GetChild(0).tag == "SampleBox" && type != "Residential" && !matched)
+        {
+            spaceHint.SetActive(true);
+        }
     }
 
     private void OnTriggerStay2D(Collider2D other)
@@ -90,5 +99,10 @@ public class Container : MonoBehaviour
     {
         // Debug.Log(" container on trigger exit 2d " + other.tag);
         OnUnhover?.Invoke(type);
+
+        if (other.gameObject.tag == "Player")
+        {
+            spaceHint.SetActive(false); 
+        }
     }
 }
