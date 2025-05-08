@@ -231,6 +231,8 @@ public class DataLabelingPlaybackDirector : MonoBehaviour
         SetupContainers();
 
         Player.Enable();
+
+        cameraZoom.ChangeZoomTarget(Player.gameObject);
     }
 
     void ResidentialContainerFilled()
@@ -309,12 +311,12 @@ public class DataLabelingPlaybackDirector : MonoBehaviour
 
     void ZoomOut()
     {
-        cameraZoom.ChangeZoomSmooth(4f);
+        cameraZoom.ZoomOut();
     }
 
     void ZoomIn()
     {
-        cameraZoom.ChangeZoomSmooth(1.2f);
+        cameraZoom.ZoomIn();
     }
 
     void End()

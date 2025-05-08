@@ -14,13 +14,15 @@ public class CameraZoom : MonoBehaviour
     readonly float deltaOrthoSize = 0.05f;
     bool IsZooming = false;
 
+    bool zoomIn = true; // Zoom In -> true -- Zoom Out -> false
+
     [SerializeField] float sensitivity = 0.5f;
     bool disableControlZoom = false;
 
     // Update is called once per frame
     void LateUpdate()
     {
-        if (disableControlZoom == false)
+        /*if (disableControlZoom == false)
         {
             // Debug.Log("Manual control of the camera zoom");
             float scroll = Input.GetAxis("Mouse ScrollWheel");
@@ -34,6 +36,12 @@ public class CameraZoom : MonoBehaviour
                 // Debug.Log("virtual camera follow " + virtualCamera.Follow.tag);
                 // Debug.Log("virtual camera follow to position " + virtualCamera.Follow.transform.position);
             }
+        }*/
+
+        if (Input.GetKeyDown(KeyCode.Q))
+        {
+            if (zoomIn) ZoomOut();
+            else ZoomIn();
         }
 
         if (IsZooming)
@@ -53,6 +61,18 @@ public class CameraZoom : MonoBehaviour
                 // Debug.Log($"After: OrthographicSize = {virtualCamera.m_Lens.OrthographicSize}, Target = {targetSize}");
             }
         }
+    }
+
+    public void ZoomIn()
+    {
+        ChangeZoomSmooth(1.5f); // Change it to a better value for ZoomIn (or if is it made an option menu, change it to the user value setted)
+        zoomIn = true;
+    }
+
+    public void ZoomOut()
+    {
+        ChangeZoomSmooth(5.7f); // Change it to a better value for ZoomOut (or if is it made an option menu, change it to the user value setted)
+        zoomIn = false;
     }
 
     public void Block()

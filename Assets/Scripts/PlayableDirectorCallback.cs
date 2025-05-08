@@ -140,7 +140,7 @@ public class PlayableDirectorCallback : MonoBehaviour
             return;
         }
 
-        cameraZoom.ChangeZoomSmooth(1.8f);
+        cameraZoom.ZoomIn();
     }
 
     public void ZoomOut()
@@ -154,7 +154,7 @@ public class PlayableDirectorCallback : MonoBehaviour
             return;
         }
 
-        cameraZoom.ChangeZoomSmooth(4f);
+        cameraZoom.ZoomOut();
     }
 
     public void FollowSpeaker(GameObject speaker)

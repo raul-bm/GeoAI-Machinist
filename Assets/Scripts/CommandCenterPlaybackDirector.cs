@@ -155,12 +155,12 @@ public class CommandCenterPlaybackDirector : MonoBehaviour
 
     void ZoomIn()
     {
-        cameraZoom.ChangeZoomSmooth(1.4f);
+        cameraZoom.ZoomIn();
     }
 
     void ZoomOut()
     {
-        cameraZoom.ChangeZoomSmooth(2f);
+        cameraZoom.ZoomOut();
     }
 
     void End()

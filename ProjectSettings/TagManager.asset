@@ -68,11 +68,11 @@ TagManager:
   - name: Collision
     uniqueID: 1003343121
     locked: 0
-  - name: Player
-    uniqueID: 4193487417
-    locked: 0
   - name: WalkBehind
     uniqueID: 2338250379
+    locked: 0
+  - name: Player
+    uniqueID: 4193487417
     locked: 0
   - name: Decor
     uniqueID: 2763912211

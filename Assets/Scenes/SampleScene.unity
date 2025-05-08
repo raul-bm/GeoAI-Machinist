@@ -1120,7 +1120,7 @@ Camera:
   far clip plane: 1000
   field of view: 34
   orthographic: 1
-  orthographic size: 1
+  orthographic size: 1.5
   m_Depth: -1
   m_CullingMask:
     serializedVersion: 2
@@ -2016,7 +2016,7 @@ MonoBehaviour:
   m_Follow: {fileID: 4603652088259903134}
   m_Lens:
     FieldOfView: 34
-    OrthographicSize: 1
+    OrthographicSize: 1.5
     NearClipPlane: 0.3
     FarClipPlane: 1000
     Dutch: 0
@@ -3208,6 +3208,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8747615313673477046, guid: 72013fef11c50734db318fb83fc9454d, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3241,6 +3245,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: 1365329501, guid: ef93ef52a019edd46b27f9b3bfed3e3b, type: 3}
+    - target: {fileID: 1268190761824729235, guid: 5ca2353d8589a5b459bec930122380bd, type: 3}
+      propertyPath: m_SortingOrder
+      value: 3
+      objectReference: {fileID: 0}
     - target: {fileID: 3370192813623780598, guid: 5ca2353d8589a5b459bec930122380bd, type: 3}
       propertyPath: m_LocalPosition.x
       value: 0

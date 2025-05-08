@@ -110,12 +110,12 @@ public class ActivationMiniGamePlaybackDirector : MonoBehaviour
 
     void ZoomIn()
     {
-        cameraZoom.ChangeZoomSmooth(1.4f);
+        cameraZoom.ZoomIn();
     }
 
     void ZoomOut()
     {
-        cameraZoom.ChangeZoomSmooth(5f);
+        cameraZoom.ZoomOut();
     }
 
     void End()

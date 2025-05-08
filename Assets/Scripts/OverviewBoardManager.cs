@@ -95,12 +95,12 @@ public class OverviewBoardManager : BaseBoard
 
     public void ZoomIn()
     {
-        cameraZoom.ChangeZoomSmooth(0.8f);
+        cameraZoom.ZoomIn();
     }
 
     public void ZoomOut()
     {
-        cameraZoom.ChangeZoomSmooth(5f);
+        cameraZoom.ZoomOut();
     }
 
     // TODO: move to Abstract class 
