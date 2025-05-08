@@ -201,6 +201,8 @@ public class PlayerController : MonoBehaviour
             nearObject.transform.position = playerObj.transform.position;
 
             grabbedObject = nearObject;
+
+            grabbedObject.GetComponent<SampleBox>().HideSpaceHint();
         }
     }
 
@@ -243,6 +245,8 @@ public class PlayerController : MonoBehaviour
             {
                 return;
             }
+
+            grabbedObject.GetComponent<SampleBox>().ShowSpaceHint();
         }
 
         animator.SetTrigger("playerGrab");

@@ -17,6 +17,8 @@ public class SampleBox : MonoBehaviour
     public string type;
     private BoxCollider2D boxCollider;
 
+    [SerializeField] private GameObject spaceHint;
+
     public void FitInContainer()
     {
         boxCollider.enabled = false;
@@ -86,6 +88,32 @@ public class SampleBox : MonoBehaviour
     public void Reset()
     {
         Destroy(gameObject);
+    }
+
+    public void ShowSpaceHint()
+    {
+        spaceHint.SetActive(true);
+    }
+
+    public void HideSpaceHint()
+    {
+        spaceHint.SetActive(false);
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.gameObject.tag == "Player" && other.transform.childCount == 0 && type != "Residential")
+        {
+            ShowSpaceHint();
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.gameObject.tag == "Player")
+        {
+            HideSpaceHint();
+        }
     }
 
 }
