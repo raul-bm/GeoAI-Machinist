@@ -19,6 +19,15 @@ public class CameraZoom : MonoBehaviour
     [SerializeField] float sensitivity = 0.5f;
     bool disableControlZoom = false;
 
+    public float minZoom { get; private set; }
+    public float maxZoom { get; private set; }
+
+    private void Awake()
+    {
+        minZoom = PlayerPrefs.GetFloat("minZoomValue");
+        maxZoom = PlayerPrefs.GetFloat("maxZoomValue");
+    }
+
     // Update is called once per frame
     void LateUpdate()
     {
@@ -65,13 +74,13 @@ public class CameraZoom : MonoBehaviour
 
     public void ZoomIn()
     {
-        ChangeZoomSmooth(1.5f); // Change it to a better value for ZoomIn (or if is it made an option menu, change it to the user value setted)
+        ChangeZoomSmooth(minZoom); // Change it to a better value for ZoomIn (or if is it made an option menu, change it to the user value setted)
         zoomIn = true;
     }
 
     public void ZoomOut()
     {
-        ChangeZoomSmooth(5.7f); // Change it to a better value for ZoomOut (or if is it made an option menu, change it to the user value setted)
+        ChangeZoomSmooth(maxZoom); // Change it to a better value for ZoomOut (or if is it made an option menu, change it to the user value setted)
         zoomIn = false;
     }
 
@@ -114,5 +123,15 @@ public class CameraZoom : MonoBehaviour
         }
 
         virtualCamera.Follow = target.transform;
+    }
+
+    public void ValuesChanged(float minValue, float maxValue)
+    {
+        minZoom = minValue;
+        maxZoom = maxValue;
+
+        // Refresh the zoom with the new changes
+        if (zoomIn) ZoomIn();
+        else ZoomOut();
     }
 }

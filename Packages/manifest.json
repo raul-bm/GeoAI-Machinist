@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "com.brogan89.minmaxslider": "https://github.com/brogan89/MinMaxSlider.git",
     "com.unity.addressables": "1.22.3",
     "com.unity.cinemachine": "2.10.2",
     "com.unity.collab-proxy": "2.5.2",

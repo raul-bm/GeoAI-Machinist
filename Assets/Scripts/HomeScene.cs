@@ -2,6 +2,12 @@ using UnityEngine;
 
 public class HomeScene : MonoBehaviour
 {
+    private void Start()
+    {
+        PlayerPrefs.SetFloat("minZoomValue", 1.5f);
+        PlayerPrefs.SetFloat("maxZoomValue", 5.7f);
+    }
+
     public void LoadGame()
     {
         // 1 - Sample Scene
