@@ -2,6 +2,13 @@ using System;
 using Cinemachine;
 using UnityEngine;
 
+public enum ZoomState
+{
+    zoomIn,
+    zoomMiddle,
+    zoomOut
+}
+
 public class CameraZoom : MonoBehaviour
 {
     [SerializeField] CinemachineVirtualCamera virtualCamera;
@@ -14,18 +21,20 @@ public class CameraZoom : MonoBehaviour
     readonly float deltaOrthoSize = 0.05f;
     bool IsZooming = false;
 
-    bool zoomIn = true; // Zoom In -> true -- Zoom Out -> false
+    ZoomState zoomState = ZoomState.zoomIn;
+    ZoomState lastZoomState = ZoomState.zoomMiddle;
 
     [SerializeField] float sensitivity = 0.5f;
     bool disableControlZoom = false;
 
     public float minZoom { get; private set; }
     public float maxZoom { get; private set; }
+    public float middleZoom { get; private set; }
 
     private void Awake()
     {
-        minZoom = PlayerPrefs.GetFloat("minZoomValue");
-        maxZoom = PlayerPrefs.GetFloat("maxZoomValue");
+        ValuesChanged(PlayerPrefs.GetFloat("minZoomValue"), PlayerPrefs.GetFloat("maxZoomValue"));
+        ZoomMiddle();
     }
 
     // Update is called once per frame
@@ -49,8 +58,25 @@ public class CameraZoom : MonoBehaviour
 
         if (Input.GetKeyDown(KeyCode.Q))
         {
-            if (zoomIn) ZoomOut();
-            else ZoomIn();
+            if(zoomState == ZoomState.zoomIn || zoomState == ZoomState.zoomOut)
+            {
+                Debug.Log("Middle");
+                lastZoomState = zoomState;
+                ZoomMiddle();
+            }
+            else
+            {
+                if(lastZoomState == ZoomState.zoomIn)
+                {
+                    Debug.Log("Out");
+                    ZoomOut();
+                }
+                else if(lastZoomState == ZoomState.zoomOut)
+                {
+                    Debug.Log("In");
+                    ZoomIn();
+                }
+            }
         }
 
         if (IsZooming)
@@ -74,14 +100,22 @@ public class CameraZoom : MonoBehaviour
 
     public void ZoomIn()
     {
-        ChangeZoomSmooth(minZoom); // Change it to a better value for ZoomIn (or if is it made an option menu, change it to the user value setted)
-        zoomIn = true;
+        ChangeZoomSmooth(minZoom);
+        lastZoomState = ZoomState.zoomMiddle;
+        zoomState = ZoomState.zoomIn;
+    }
+
+    public void ZoomMiddle()
+    {
+        ChangeZoomSmooth(middleZoom);
+        zoomState = ZoomState.zoomMiddle;
     }
 
     public void ZoomOut()
     {
-        ChangeZoomSmooth(maxZoom); // Change it to a better value for ZoomOut (or if is it made an option menu, change it to the user value setted)
-        zoomIn = false;
+        ChangeZoomSmooth(maxZoom);
+        lastZoomState = ZoomState.zoomMiddle;
+        zoomState = ZoomState.zoomOut;
     }
 
     public void Block()
@@ -130,8 +164,11 @@ public class CameraZoom : MonoBehaviour
         minZoom = minValue;
         maxZoom = maxValue;
 
+        middleZoom = Mathf.Round((maxZoom + minZoom) / 2 * 10.0f) * 0.1f;
+
         // Refresh the zoom with the new changes
-        if (zoomIn) ZoomIn();
+        if (zoomState == ZoomState.zoomIn) ZoomIn();
+        else if (zoomState == ZoomState.zoomMiddle) ZoomMiddle();
         else ZoomOut();
     }
 }
