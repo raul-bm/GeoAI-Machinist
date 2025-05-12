@@ -52,6 +52,7 @@ public class ConvolutionalMiniGamePlaybackDirector : MonoBehaviour
 
     void NextLine()
     {
+        dialogueBalloon.isCinematic = true;
         ClearCallbacks();
 
         if (screenplay.Count <= currentLineIndex)
@@ -129,6 +130,8 @@ public class ConvolutionalMiniGamePlaybackDirector : MonoBehaviour
 
     void End()
     {
+        dialogueBalloon.isCinematic = false;
+
         dialogueBalloon.Hide();
         ClearCallbacks();
 

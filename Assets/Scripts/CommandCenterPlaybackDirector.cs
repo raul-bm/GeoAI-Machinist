@@ -73,6 +73,7 @@ public class CommandCenterPlaybackDirector : MonoBehaviour
 
     void NextLine()
     {
+        dialogueBalloon.isCinematic = true;
         dialogueBalloon.Hide();
         ClearCallbacks();
 
@@ -165,6 +166,7 @@ public class CommandCenterPlaybackDirector : MonoBehaviour
 
     void End()
     {
+        dialogueBalloon.isCinematic = false;
         Player.Disable();
         dialogueBalloon.Hide();
         ClearCallbacks();

@@ -58,6 +58,7 @@ public class PlayableDirectorCallback : MonoBehaviour
 
     void NextLine()
     {
+        dialogueBalloon.isCinematic = true;
         dialogueBalloon.Hide();
         currentLineIndex++;
 
@@ -93,14 +94,14 @@ public class PlayableDirectorCallback : MonoBehaviour
         }
 
         dialogueBalloon.SetMessage(line.Item2);
-        if (currentLineIndex < 2)
+        /*if (currentLineIndex < 2)
         {
             dialogueBalloon.ShowIntroduction();
         }
         else
-        {
+        {*/
             dialogueBalloon.Show();
-        }
+        //}
     }
 
     private bool HasSpeakerChanged()
@@ -121,6 +122,7 @@ public class PlayableDirectorCallback : MonoBehaviour
 
     private void End()
     {
+        dialogueBalloon.isCinematic = false;
         FollowSpeaker(Player.gameObject);
 
         endAnimation.Play();

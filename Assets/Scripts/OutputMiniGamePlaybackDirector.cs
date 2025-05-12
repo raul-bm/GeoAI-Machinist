@@ -63,6 +63,7 @@ public class OutputMiniGamePlaybackDirector : MonoBehaviour
 
     public void NextLine()
     {
+        dialogueBalloon.isCinematic = true;
         ClearCallbacks();
 
         if (screenplay.Count <= currentLineIndex)
@@ -204,6 +205,7 @@ public class OutputMiniGamePlaybackDirector : MonoBehaviour
 
     void End()
     {
+        dialogueBalloon.isCinematic = false;
         NPC.OnHover -= DisplayFlattenInstruction;
         dialogueBalloon.Hide();
         ClearCallbacks();

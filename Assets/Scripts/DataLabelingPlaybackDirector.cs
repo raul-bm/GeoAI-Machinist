@@ -58,6 +58,7 @@ public class DataLabelingPlaybackDirector : MonoBehaviour
 
     void NextLine()
     {
+        dialogueBalloon.isCinematic = true;
         ClearCallbacks();
 
         if (screenplay.Count <= currentLineIndex)
@@ -321,6 +322,7 @@ public class DataLabelingPlaybackDirector : MonoBehaviour
 
     void End()
     {
+        dialogueBalloon.isCinematic = false;
         dialogueBalloon.Hide();
         ClearCallbacks();
 

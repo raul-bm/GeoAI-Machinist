@@ -205,11 +205,13 @@ public class InputMiniGameManager : BaseBoard
     {
         Turn current = turns[currentTurn];
         // NPC displays message
+        dialogueBalloon.isCinematic = true;
         string message = current.GetTurnOverMessage();
         dialogueBalloon.SetSpeaker(NPC.gameObject);
+        cameraZoom.ChangeZoomTarget(NPC.gameObject);
         dialogueBalloon.SetMessage(message);
         dialogueBalloon.PlaceUpperLeft();
-        dialogueBalloon.Show(8f);
+        dialogueBalloon.Show();
     }
 
     private void DisplayInitTurnMessage()
@@ -230,6 +232,7 @@ public class InputMiniGameManager : BaseBoard
 
     private void DisplayGameOverMessage()
     {
+        dialogueBalloon.isCinematic = true;
         string message = "Good job, now the Input Layer Room is fixed!";
         dialogueBalloon.SetSpeaker(NPC.gameObject);
         dialogueBalloon.SetMessage(message);
@@ -278,6 +281,9 @@ public class InputMiniGameManager : BaseBoard
 
     void InitNewTurn()
     {
+        dialogueBalloon.isCinematic = false;
+        Player.Enable();
+        cameraZoom.ChangeZoomTarget(Player.gameObject);
         dialogueBalloon.OnDone -= InitNewTurn;
 
         if (currentTurn == 2)
@@ -310,6 +316,7 @@ public class InputMiniGameManager : BaseBoard
 
     void TurnOver()
     {
+        Player.Disable();
         NPC.OnHover -= DisplayInitTurnMessage;
         BlockAllSpectralBands();
         DisplayTurnOverMessage();

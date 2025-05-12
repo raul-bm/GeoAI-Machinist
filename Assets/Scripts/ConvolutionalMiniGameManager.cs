@@ -329,6 +329,7 @@ public class ConvolutionalMiniGameManager : BaseBoard
         // NPC speaks message
         cameraZoom.ChangeZoomTarget(NPC.gameObject);
         ZoomIn();
+        dialogueBalloon.isCinematic = true;
         string message = "Good job picking the kernel that enhances human-made features to analyze a residential area. Let's go back for the CNN Room.";
         dialogueBalloon.SetSpeaker(NPC.gameObject);
         dialogueBalloon.SetMessage(message);

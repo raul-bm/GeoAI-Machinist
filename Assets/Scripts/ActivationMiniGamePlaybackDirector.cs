@@ -60,6 +60,7 @@ public class ActivationMiniGamePlaybackDirector : MonoBehaviour
 
     void NextLine()
     {
+        dialogueBalloon.isCinematic = true;
         ClearCallbacks();
 
         if (screenplay.Count <= currentLineIndex)
@@ -120,6 +121,7 @@ public class ActivationMiniGamePlaybackDirector : MonoBehaviour
 
     void End()
     {
+        dialogueBalloon.isCinematic = false;
         dialogueBalloon.Hide();
         ClearCallbacks();
 

@@ -271,6 +271,7 @@ public class ActivationMiniGameManager : BaseBoard
 
         // NPC speaks message
         cameraZoom.ChangeZoomTarget(NPC.gameObject);
+        dialogueBalloon.isCinematic = true;
         ZoomIn();
         string message = "Good job picking the best activation function for this scenario. Let's go back for the CNN Room.";
         dialogueBalloon.SetSpeaker(NPC.gameObject);

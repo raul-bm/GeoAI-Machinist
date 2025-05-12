@@ -10,6 +10,7 @@ public class DialogueBalloon : MonoBehaviour
     bool waitingKey = false;
     bool isIntroduction = false;
     string relativePosition = "upperRight"; // can be upperLeft
+    public bool isCinematic = false;
 
     float xOffset = 0.85f;
     float yOffset = 0.55f;
@@ -23,12 +24,17 @@ public class DialogueBalloon : MonoBehaviour
     private Transform hint;
     private TextMeshPro label;
 
+    private bool dialogueTyping = false;
+    private string currentMessage = "";
+
 
     void Awake()
     {
         speech = transform.Find("Speech");
         label = speech.GetComponent<TextMeshPro>();
         hint = transform.Find("Hint");
+
+        dialogueTyping = false;
 
         HideHint();
     }
@@ -94,10 +100,31 @@ public class DialogueBalloon : MonoBehaviour
     public void Show()
     {
         gameObject.SetActive(true);
+        StartCoroutine(showText());
         waitingKey = true;
         hintTimeout = CalculateDuration();
         HideHint();
         isIntroduction = false;
+    }
+
+    private IEnumerator showText()
+    {
+        currentMessage = label.text;
+        label.text = "";
+
+        dialogueTyping = true;
+
+        foreach(char letter in currentMessage)
+        {
+            if (dialogueTyping)
+            {
+                label.text += letter;
+                yield return new WaitForSeconds(0.05f); // Text velocity
+            }
+        }
+
+        dialogueTyping = false;
+        ShowHint();
     }
 
     public void ShowIntroduction()
@@ -107,6 +134,7 @@ public class DialogueBalloon : MonoBehaviour
         hintTimeout = CalculateDuration();
         HideHint();
         isIntroduction = true;
+        ShowHint();
     }
 
     private float CalculateDuration()
@@ -144,12 +172,15 @@ public class DialogueBalloon : MonoBehaviour
 
     public void ShowHint()
     {
-        hint.gameObject.SetActive(true);
-        if (isIntroduction)
+        if(isCinematic)
         {
-            // Debug.Log("Show Press SPACE");
-            label.text += "\n(Press SPACE)";
-            isIntroduction = false;
+            hint.gameObject.SetActive(true);
+            if (isIntroduction)
+            {
+                // Debug.Log("Show Press SPACE");
+                label.text += "\n(Press SPACE)";
+                isIntroduction = false;
+            }
         }
     }
 
@@ -167,6 +198,24 @@ public class DialogueBalloon : MonoBehaviour
             return;
         }
 
+        if (Input.GetKeyDown(KeyCode.Space) && isCinematic)
+        {
+            if(dialogueTyping)
+            {
+                dialogueTyping = false;
+                label.text = currentMessage;
+                ShowHint();
+            }
+            else
+            {
+                waitingKey = false;
+                HideHint();
+                OnDone?.Invoke();
+            }
+        }
+
+        /*
+
         hintTimer += Time.deltaTime;
         if (hintTimer >= hintTimeout)
         {
@@ -180,6 +229,6 @@ public class DialogueBalloon : MonoBehaviour
                     OnDone?.Invoke();
                 }
             }
-        }
+        }*/
     }
 }
