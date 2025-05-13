@@ -80,12 +80,13 @@ public class PlayerController : MonoBehaviour
 
     private void TurnLeft()
     {
-        animator.SetFloat("LastInputX", -1f);
+        if(isEnabled) animator.SetFloat("LastInputX", -1f);
+
     }
 
     public void TurnRight()
     {
-        animator.SetFloat("LastInputX", 1f);
+        if (isEnabled) animator.SetFloat("LastInputX", 1f);
     }
 
     public void ChangeMoney(int amount)
@@ -151,7 +152,7 @@ public class PlayerController : MonoBehaviour
             animator.SetBool("playerWalk", false);
 
             // only-vertical movement won't change direction
-            if (!IsOnlyVertical(moveInput))
+            if (!IsOnlyVertical(moveInput) && isEnabled)
             {
                 animator.SetFloat("LastInputX", moveInput.x);
             }
@@ -170,15 +171,17 @@ public class PlayerController : MonoBehaviour
         }
 
         // only-vertical movement keep previous direction
-        if (IsOnlyVertical(moveInput))
+        if(isEnabled)
         {
-            animator.SetFloat("InputX", animator.GetFloat("LastInputX"));
+            if (IsOnlyVertical(moveInput))
+            {
+                animator.SetFloat("InputX", animator.GetFloat("LastInputX"));
+            }
+            else
+            {
+                animator.SetFloat("InputX", moveInput.x);
+            }
         }
-        else
-        {
-            animator.SetFloat("InputX", moveInput.x);
-        }
-
     }
 
     private void GrabSampleBox()
