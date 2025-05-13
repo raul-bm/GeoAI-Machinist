@@ -26,6 +26,22 @@ public class GameManager : MonoBehaviour
         {"Output", false}
     };
 
+    public Dictionary<string, bool> blockedDoors = new()
+    {
+        {"Input", false},
+        {"Convolutional 1", false},
+        {"Activation 1", false},
+        {"Convolutional 2", true},
+        {"Activation 2", true},
+        {"Pooling 1", true},
+        {"Convolutional 3", true},
+        {"Activation 3", true},
+        {"Convolutional 4", true},
+        {"Activation 4", true},
+        {"Pooling 2", true},
+        {"Output", false}
+    };
+
     void Awake()
     {
         if (instance == null)

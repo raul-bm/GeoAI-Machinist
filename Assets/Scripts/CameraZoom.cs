@@ -60,7 +60,6 @@ public class CameraZoom : MonoBehaviour
         {
             if(zoomState == ZoomState.zoomIn || zoomState == ZoomState.zoomOut)
             {
-                Debug.Log("Middle");
                 lastZoomState = zoomState;
                 ZoomMiddle();
             }
@@ -68,12 +67,10 @@ public class CameraZoom : MonoBehaviour
             {
                 if(lastZoomState == ZoomState.zoomIn)
                 {
-                    Debug.Log("Out");
                     ZoomOut();
                 }
                 else if(lastZoomState == ZoomState.zoomOut)
                 {
-                    Debug.Log("In");
                     ZoomIn();
                 }
             }

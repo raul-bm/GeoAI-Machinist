@@ -7,7 +7,7 @@ using UnityEngine;
 public class DialogueBalloon : MonoBehaviour
 {
     public Action OnDone;
-    bool waitingKey = false;
+    public bool waitingKey = false;
     bool isIntroduction = false;
     string relativePosition = "upperRight"; // can be upperLeft
     public bool isCinematic = false;
@@ -85,7 +85,8 @@ public class DialogueBalloon : MonoBehaviour
             speech = transform.Find("Speech");
             label = speech.GetComponent<TextMeshPro>();
         }
-        label.text = message;
+        label.text = "";
+        currentMessage = message;
     }
 
     public void Show(float minDuration = 5f)
@@ -99,6 +100,7 @@ public class DialogueBalloon : MonoBehaviour
 
     public void Show()
     {
+        StopAllCoroutines();
         gameObject.SetActive(true);
         StartCoroutine(showText());
         waitingKey = true;
@@ -109,7 +111,6 @@ public class DialogueBalloon : MonoBehaviour
 
     private IEnumerator showText()
     {
-        currentMessage = label.text;
         label.text = "";
 
         dialogueTyping = true;
@@ -124,6 +125,7 @@ public class DialogueBalloon : MonoBehaviour
         }
 
         dialogueTyping = false;
+
         ShowHint();
     }
 
@@ -156,6 +158,7 @@ public class DialogueBalloon : MonoBehaviour
 
     public void Hide()
     {
+        isCinematic = false;
         gameObject.SetActive(false);
         waitingKey = false;
     }

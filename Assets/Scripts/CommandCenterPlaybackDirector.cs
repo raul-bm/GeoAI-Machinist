@@ -73,7 +73,6 @@ public class CommandCenterPlaybackDirector : MonoBehaviour
 
     void NextLine()
     {
-        dialogueBalloon.isCinematic = true;
         dialogueBalloon.Hide();
         ClearCallbacks();
 
@@ -98,6 +97,7 @@ public class CommandCenterPlaybackDirector : MonoBehaviour
                     cameraZoom.ChangeZoomTarget(NPC.gameObject);
                 }
                 dialogueBalloon.SetMessage(line.Item2);
+                dialogueBalloon.isCinematic = true;
                 dialogueBalloon.Show();
                 dialogueBalloon.OnDone += NextLine;
                 break;

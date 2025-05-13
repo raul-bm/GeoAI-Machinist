@@ -1,5 +1,6 @@
 using System.Collections;
 using System.Collections.Generic;
+using Unity.VisualScripting;
 using UnityEngine;
 using UnityEngine.Playables;
 
@@ -39,6 +40,7 @@ public class DataLabelingPlaybackDirector : MonoBehaviour
         screenplay.Add(new("NPC", "Our AI relies on labeled data as ground truth to identify patterns and improve its ability to make accurate predictions."));
         screenplay.Add(new("NPC", "First step is to grab a sample. There is one sample just behind you."));
         screenplay.Add(new("action", "action1"));
+        screenplay.Add(new("NPC", ""));
         screenplay.Add(new("NPC", "Now, lets find the correct container and drop the sample."));
         screenplay.Add(new("action", "action2"));
         screenplay.Add(new("action", "action3"));
@@ -72,6 +74,7 @@ public class DataLabelingPlaybackDirector : MonoBehaviour
         switch (line.Item1)
         {
             case "action":
+                dialogueBalloon.isCinematic = false;
                 ExecuteAction(line.Item2);
                 break;
             case "NPC":
@@ -178,7 +181,7 @@ public class DataLabelingPlaybackDirector : MonoBehaviour
             if (sampleBox.type.Equals("Residential"))
             {
                 sampleBox.OnGrab += ResidentialSampleGrabbed;
-                sampleBox.OnWrongDrop += DisplayWrongContainerMessage;
+                //sampleBox.OnWrongDrop += DisplayWrongContainerMessage;
             }
             else
             {
@@ -251,6 +254,22 @@ public class DataLabelingPlaybackDirector : MonoBehaviour
         dialogueBalloon.PlaceUpperLeft();
         dialogueBalloon.Show();
         dialogueBalloon.DisableKey();
+        //dialogueBalloon.OnDone += dialogueBalloon.Hide;
+
+        if (screenplay[currentLineIndex].Item2 != "")
+        {
+            (string, string) lastLine = screenplay[currentLineIndex];
+            screenplay[currentLineIndex] = new("NPC", "");
+
+            for (int i = currentLineIndex + 1; i < screenplay.Count; i++)
+            {
+                (string, string) aux = lastLine;
+                lastLine = screenplay[i];
+                screenplay[i] = aux;
+            }
+
+            screenplay.Add(lastLine);
+        }
     }
 
     void SetupContainers()

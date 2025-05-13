@@ -59,7 +59,7 @@ public class PlayableDirectorCallback : MonoBehaviour
     void NextLine()
     {
         dialogueBalloon.isCinematic = true;
-        dialogueBalloon.Hide();
+        //dialogueBalloon.Hide();
         currentLineIndex++;
 
         if (screenplay.Count <= currentLineIndex)
@@ -123,6 +123,7 @@ public class PlayableDirectorCallback : MonoBehaviour
     private void End()
     {
         dialogueBalloon.isCinematic = false;
+        dialogueBalloon.Hide();
         FollowSpeaker(Player.gameObject);
 
         endAnimation.Play();

@@ -255,7 +255,6 @@ public class ConvolutionalMiniGameManager : BaseBoard
         {
             return;
         }
-        Debug.Log("");
         if (IsGameOver())
         {
             StartCoroutine(AnimateGameOver());

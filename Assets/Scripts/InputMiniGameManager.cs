@@ -1,4 +1,5 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using TMPro;
 using UnityEngine;
@@ -203,12 +204,24 @@ public class InputMiniGameManager : BaseBoard
 
     private void DisplayTurnOverMessage()
     {
+        StartCoroutine(showTurnOverMessage());
+    }
+
+    IEnumerator showTurnOverMessage()
+    {
         Turn current = turns[currentTurn];
         // NPC displays message
         dialogueBalloon.isCinematic = true;
-        string message = current.GetTurnOverMessage();
         dialogueBalloon.SetSpeaker(NPC.gameObject);
         cameraZoom.ChangeZoomTarget(NPC.gameObject);
+        if (currentTurn > 0)
+        {
+            dialogueBalloon.SetMessage(" ");
+            dialogueBalloon.PlaceUpperLeft();
+            dialogueBalloon.Show();
+            yield return new WaitForSeconds(0.1f);
+        }
+        string message = current.GetTurnOverMessage();
         dialogueBalloon.SetMessage(message);
         dialogueBalloon.PlaceUpperLeft();
         dialogueBalloon.Show();

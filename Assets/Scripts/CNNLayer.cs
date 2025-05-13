@@ -17,6 +17,7 @@ public class CNNLayer : MonoBehaviour
     public Sprite statusGood;
 
     public GameObject wormholeAnimation;
+    public GameObject door;
 
 
     // Start is called before the first frame update
@@ -31,17 +32,27 @@ public class CNNLayer : MonoBehaviour
     private void SetGameStatus()
     {
         bool solved = GameManager.instance.solvedMinigames[type];
+        bool blockedDoor = GameManager.instance.blockedDoors[type];
         SpriteRenderer spriteRenderer = transform.Find("StatusIndicator").GetComponent<SpriteRenderer>();
 
-        if (solved)
+        if(blockedDoor)
         {
-            spriteRenderer.sprite = statusGood;
+            door.SetActive(true);
             wormholeAnimation.SetActive(false);
+            spriteRenderer.sprite = statusGood;
         }
         else
         {
-            spriteRenderer.sprite = statusBad;
-            wormholeAnimation.SetActive(true);
+            if (solved)
+            {
+                spriteRenderer.sprite = statusGood;
+                wormholeAnimation.GetComponent<SpriteRenderer>().color = Color.green;
+            }
+            else
+            {
+                spriteRenderer.sprite = statusBad;
+                wormholeAnimation.GetComponent<SpriteRenderer>().color = Color.red;
+            }
         }
     }
 

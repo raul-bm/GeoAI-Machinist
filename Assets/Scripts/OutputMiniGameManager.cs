@@ -126,6 +126,8 @@ public class OutputMiniGameManager : BaseBoard
 
     private void GameOverMessage()
     {
+        dialogueBalloon.isCinematic = true;
+        dialogueBalloon.waitingKey = true;
         // string message = "Good job flattenning the image and applying softmax to calculate probabilities. Let's go back to the CNN room.";
         string message = "Good job flattenning the image and applying softmax to calculate probabilities. Explore this room a bit more if you will, then go back to the CNN room.";
         dialogueBalloon.SetSpeaker(NPC.gameObject);
