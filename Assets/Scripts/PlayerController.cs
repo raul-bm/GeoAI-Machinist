@@ -391,11 +391,11 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        if (nearObject && nearObject.CompareTag("CNNLayer"))
+        /*if (nearObject && nearObject.CompareTag("CNNLayer"))
         {
             StartMiniGame();
             return;
-        }
+        }*/
 
         if (nearObject && nearObject.CompareTag("CommandCenter"))
         {

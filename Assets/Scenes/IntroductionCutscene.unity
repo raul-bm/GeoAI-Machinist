@@ -169,6 +169,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84899816435b54940b2d006a3e0cf035, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  waitingKey: 0
+  isCinematic: 0
   hintTimeout: 5
   hintTimer: 0
   leftConnection: {fileID: 2063710515}
