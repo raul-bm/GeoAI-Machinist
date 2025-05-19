@@ -17,7 +17,7 @@ public class GameManager : MonoBehaviour
         {"Activation 1", false},
         {"Convolutional 2", true},
         {"Activation 2", true},
-        {"Pooling 1", true},
+        {"Pooling 1", false},
         {"Convolutional 3", true},
         {"Activation 3", true},
         {"Convolutional 4", true},
@@ -33,7 +33,7 @@ public class GameManager : MonoBehaviour
         {"Activation 1", false},
         {"Convolutional 2", true},
         {"Activation 2", true},
-        {"Pooling 1", true},
+        {"Pooling 1", false},
         {"Convolutional 3", true},
         {"Activation 3", true},
         {"Convolutional 4", true},
@@ -89,6 +89,10 @@ public class GameManager : MonoBehaviour
             case "Output":
                 UnityEngine.SceneManagement.SceneManager.LoadScene(9);
                 playerPositionOverview = new Vector2Int(12, 2);
+                break;
+            case "Pooling 1":
+                UnityEngine.SceneManagement.SceneManager.LoadScene(10);
+                playerPositionOverview = new Vector2Int(6, 5);
                 break;
             default:
                 break;

@@ -27,6 +27,11 @@ public class Locker : MonoBehaviour
             ActivationBox activationBox = gameObject.GetComponent<ActivationBox>();
             return CanAddActivationBox(activationBox);
         }
+        else if(gameObject.CompareTag("PoolingBox"))
+        {
+            PoolingBox poolingBox = gameObject.GetComponent<PoolingBox>();
+            return CanAddPoolingBox(poolingBox);
+        }
 
         return false;
     }
@@ -39,6 +44,11 @@ public class Locker : MonoBehaviour
     public bool CanAddActivationBox(ActivationBox activationBox)
     {
         return activationBox.GetId() == id;
+    }
+
+    public bool CanAddPoolingBox(PoolingBox poolingBox)
+    {
+        return poolingBox.GetId() == id;
     }
 
     public void AddKernel(GameObject kernel)
@@ -55,5 +65,13 @@ public class Locker : MonoBehaviour
         activationBox.transform.parent = gameObject.transform;
         activationBox.transform.localScale = new(0.3f, 0.6f, 0f);
         activationBox.transform.position = new Vector3(position.x + xOffset, position.y + yOffset, position.z);
+    }
+
+    public void AddPoolingBox(GameObject poolingBox)
+    {
+        Vector3 position = gameObject.transform.position;
+        poolingBox.transform.parent = gameObject.transform;
+        poolingBox.transform.localScale = new(0.3f, 0.6f, 0f);
+        poolingBox.transform.position = new Vector3(position.x + xOffset, position.y + yOffset, position.z);
     }
 }

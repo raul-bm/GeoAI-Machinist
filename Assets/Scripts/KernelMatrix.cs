@@ -27,6 +27,8 @@ public class KernelMatrix : MonoBehaviour
     double[,] kernel;
     public List<double> flatKernel;
 
+    [SerializeField] private GameObject spaceHint;
+
     public void SetMatrix(List<double> newFlatKernel, double[,] newKernel)
     {
         kernel = newKernel;
@@ -74,6 +76,8 @@ public class KernelMatrix : MonoBehaviour
         transform.localPosition = relativeToParentPosition;
         OnGrabbed?.Invoke();
         StopBlink();
+
+        spaceHint.SetActive(false);
     }
 
     public bool IsGrabbed()
@@ -147,6 +151,26 @@ public class KernelMatrix : MonoBehaviour
                 ToggleKernelOutline();
                 timer = 0f;
             }
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            GameObject grabbedObject = other.GetComponent<PlayerController>().grabbedObject;
+
+            if (grabbedObject == null) spaceHint.SetActive(true);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            GameObject grabbedObject = other.GetComponent<PlayerController>().grabbedObject;
+
+            if (grabbedObject == null) spaceHint.SetActive(false);
         }
     }
 }

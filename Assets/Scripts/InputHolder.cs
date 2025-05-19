@@ -10,6 +10,8 @@ public class InputHolder : MonoBehaviour
     private float horizontalOffset = 0.013f;
     int id = -1;
 
+    [SerializeField] private GameObject spaceHint;
+
     public void Init(int newId)
     {
         id = newId;
@@ -45,6 +47,11 @@ public class InputHolder : MonoBehaviour
             ActivationBox activationBox = gameObject.GetComponent<ActivationBox>();
             return CanAddActivationBox(activationBox);
         }
+        else if(gameObject.CompareTag("PoolingBox"))
+        {
+            PoolingBox poolingBox = gameObject.GetComponent<PoolingBox>();
+            return CanAddPoolingBox(poolingBox);
+        }
 
         return false;
     }
@@ -59,6 +66,11 @@ public class InputHolder : MonoBehaviour
         return activationBox.GetId() == id;
     }
 
+    public bool CanAddPoolingBox(PoolingBox poolingBox)
+    {
+        return poolingBox.GetId() == id;
+    }
+
     public void AddInputObject(GameObject inputObject)
     {
         // Change scale
@@ -69,6 +81,8 @@ public class InputHolder : MonoBehaviour
         inputObject.transform.position = new Vector3(gameObject.transform.position.x + horizontalOffset, gameObject.transform.position.y + verticalOffset);
 
         OnAddedObject?.Invoke();
+
+        spaceHint.SetActive(false);
     }
 
     public void RemoveInputSample(SampleBox sampleBox)
@@ -98,5 +112,25 @@ public class InputHolder : MonoBehaviour
         // Debug.Log("Draw connection from " + startPoint + " to " + endPoint);
         Connection conn = new(startPoint, endPoint, lineRenderer);
         conn.DrawLine();
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.CompareTag("Player"))
+        {
+            GameObject grabbedObject = other.GetComponent<PlayerController>().grabbedObject;
+
+            if (grabbedObject != null && CanAdd(grabbedObject)) spaceHint.SetActive(true);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if(other.CompareTag("Player"))
+        {
+            GameObject grabbedObject = other.GetComponent<PlayerController>().grabbedObject;
+
+            if (grabbedObject != null) spaceHint.SetActive(false);
+        }
     }
 }

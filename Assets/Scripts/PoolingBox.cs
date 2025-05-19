@@ -1,11 +1,12 @@
 using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 using System.Runtime.CompilerServices;
 using TMPro;
 using UnityEngine;
 
-public class ActivationBox : MonoBehaviour
+public class PoolingBox : MonoBehaviour
 {
     public Action OnGrabbed;
     private bool grabbed = false;
@@ -25,7 +26,7 @@ public class ActivationBox : MonoBehaviour
     public void Init(int newId)
     {
         id = newId;
-        gameObject.name = "ActivationBox" + id;
+        gameObject.name = "PoolingBox" + id;
     }
 
     public int GetId()
@@ -74,50 +75,36 @@ public class ActivationBox : MonoBehaviour
 
     public void Release()
     {
-        transform.tag = "ActivationBox";
+        transform.tag = "PoolingBox";
     }
 
-    public double ApplyFunction(double pixelValue)
+    public double ApplyFunction(List<double> pixelValues)
     {
         switch (type)
         {
-            case "ReLu":
-                return ReLu(pixelValue);
-            case "Sigmoid":
-                return Sigmoid(pixelValue);
-            case "tanh":
-                return HyperbolicTangent(pixelValue);
-            case "Linear":
-                return Linear(pixelValue);
+            case "Max":
+                return FunctionMax(pixelValues);
+            case "Min":
+                return FunctionMin(pixelValues);
+            case "Average":
+                return FunctionAverage(pixelValues);
         }
-        return pixelValue;
+        return pixelValues[0];
     }
 
-    double ReLu(double value)
+    double FunctionMax(List<double> values)
     {
-        if (value > 0)
-        {
-            return value;
-        }
-
-        return 0;
+        return values.Max();
     }
 
-    double Sigmoid(double value)
+    double FunctionMin(List<double> values)
     {
-        return 1.0f / (1.0f + (float)Math.Exp(-value));
+        return values.Min();
     }
 
-    double HyperbolicTangent(double x)
+    double FunctionAverage(List<double> values)
     {
-        if (x < -45.0) return -1.0;
-        else if (x > 45.0) return 1.0;
-        else return Math.Tanh(x);
-    }
-
-    double Linear(double x)
-    {
-        return x;
+        return values.Average();
     }
 
     public void Blink()
@@ -168,5 +155,4 @@ public class ActivationBox : MonoBehaviour
             if (grabbedObject == null) spaceHint.SetActive(false);
         }
     }
-
 }

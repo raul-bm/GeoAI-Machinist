@@ -263,6 +263,10 @@ public class PlayerController : MonoBehaviour
         {
             grabbedObject.transform.localScale = new Vector3(0.6f, 0.6f, 1f);
         }
+        else if (grabbedObject.CompareTag("PoolingBox"))
+        {
+            grabbedObject.transform.localScale = new Vector3(0.6f, 0.6f, 1f);
+        }
         // change box parent
         grabbedObject.transform.parent = null;
         grabbedObject = null;
@@ -333,6 +337,23 @@ public class PlayerController : MonoBehaviour
         nearObject.GetComponent<ActivationBox>().Grab(transform.position);
     }
 
+    private void GrabPoolingBox()
+    {
+        Transform grabbeableObject = nearObject.transform;
+        animator.SetTrigger("playerGrab");
+
+        // Change scale
+        // change box parent
+        GameObject playerObj = GameObject.Find("Player");
+        grabbeableObject.parent = playerObj.transform;
+        // get player position and Change box position
+        grabbeableObject.position = playerObj.transform.position;
+
+        grabbedObject = grabbeableObject.gameObject;
+
+        nearObject.GetComponent<PoolingBox>().Grab(transform.position);
+    }
+
     private void FillInputHolder()
     {
         InputHolder inputHolder = nearObject.GetComponent<InputHolder>();
@@ -357,6 +378,9 @@ public class PlayerController : MonoBehaviour
                     break;
                 case "ActivationBox":
                     locker.AddActivationBox(grabbedObject);
+                    break;
+                case "PoolingBox":
+                    locker.AddPoolingBox(grabbedObject);
                     break;
             }
             grabbedObject = null;
@@ -468,6 +492,10 @@ public class PlayerController : MonoBehaviour
             else if (nearObject.CompareTag("ActivationBox"))
             {
                 GrabActivationBox();
+            }
+            else if (nearObject.CompareTag("PoolingBox"))
+            {
+                GrabPoolingBox();
             }
 
         }

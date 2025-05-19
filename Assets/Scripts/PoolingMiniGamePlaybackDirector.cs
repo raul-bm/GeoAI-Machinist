@@ -1,24 +1,31 @@
 using System;
+using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
 
-public class ConvolutionalMiniGamePlaybackDirector : MonoBehaviour
+public class PoolingMiniGamePlaybackDirector : MonoBehaviour
 {
     public Action OnEnd;
-    public PlayableDirector introductionAnimation;
 
+    // public PlayableDirector introductionAnimation;
     public PlayerController Player;
     public NonPlayerCharacter NPC;
     public DialogueBalloon dialogueBalloon;
-    public HintBalloon hintBalloon;
     public CameraZoom cameraZoom;
     List<(string, string)> screenplay = new List<(string, string)>();
     int currentLineIndex = 0;
 
+    // Start is called before the first frame update
+    void Start()
+    {
+        // introductionAnimation.stopped += OnPlayableDirectorStopped;
+        // InitializeScreenplay();
+        // Init();
+    }
+
     public void StartAnimation()
     {
-        introductionAnimation.stopped += OnPlayableDirectorStopped;
         InitializeScreenplay();
         Init();
     }
@@ -31,13 +38,10 @@ public class ConvolutionalMiniGamePlaybackDirector : MonoBehaviour
     void InitializeScreenplay()
     {
         screenplay = new List<(string, string)>() {
-        new("NPC", "This room is a Convolutional Layer of the CNN. It applies a filter, known as ‘kernel’, to an input image, through matrix multiplication on their matrix representations."),
-        new("NPC", "A kernel is a matrix with pre-determined values to enhance features in an image. You can see a kernel blinking over there."),
-        // new("action", "action1"), // Robot Walk and Hint Kernel
-        // new("action", "action2"), // Hint Kernel
-        new("NPC", "Place the kernel in the input holder to start a convolution."),
-        new("NPC", "Choose the best kernel that enhances the streets' footprint in the image."),
-        // new("action", "action2"), // Hint Kernel and the Input Holder
+        new("NPC", "This room is the Pooling Layer of the CNN. This layer reduces the size of the data while keeps the important features."),
+        new("NPC", "Pooling helps the network and computers become faster and more efficient by compressing small regions of the image."),
+        new("NPC", "It ensures the CNN can still recognize important features, like roads or rivers."),
+        new("NPC", "Place, in the input holder, the best pooling strategy to preserve key features while reducing complexity."),
         };
     }
 
@@ -95,27 +99,10 @@ public class ConvolutionalMiniGamePlaybackDirector : MonoBehaviour
         switch (actionId)
         {
             case "action1":
-                // NPCWalkToKernel();
                 break;
             case "action2":
-                // HintKernel();
-                // HintInputHolder();
-                // PlayerWalk();
                 break;
         }
-    }
-
-    void HintInputHolder()
-    {
-        GameObject inputHolderObject = GameObject.Find("KernelHolder1");
-        hintBalloon.SetSpaceKey();
-        hintBalloon.SetTarget(inputHolderObject);
-        hintBalloon.PlaceOver();
-        hintBalloon.SetWaitKey(false);
-        hintBalloon.Show();
-
-        InputHolder inputHolder = inputHolderObject.GetComponent<InputHolder>();
-        inputHolder.OnAddedObject += hintBalloon.Hide;
     }
 
     void ZoomIn()
@@ -131,7 +118,6 @@ public class ConvolutionalMiniGamePlaybackDirector : MonoBehaviour
     void End()
     {
         dialogueBalloon.isCinematic = false;
-
         dialogueBalloon.Hide();
         ClearCallbacks();
 
@@ -139,22 +125,16 @@ public class ConvolutionalMiniGamePlaybackDirector : MonoBehaviour
         ZoomOut();
 
         Player.Enable();
-        //HintInputHolder();
         OnEnd?.Invoke();
     }
 
     void ClearCallbacks()
     {
         dialogueBalloon.OnDone -= NextLine;
-        hintBalloon.OnDone -= Player.Disable;
-        hintBalloon.OnDone -= NextLine;
-        hintBalloon.OnDone -= ZoomIn;
     }
 
     void OnDisable()
     {
-        introductionAnimation.stopped -= OnPlayableDirectorStopped;
-        hintBalloon.OnDone -= Player.Disable;
         dialogueBalloon.OnDone -= NextLine;
     }
 }

@@ -41,6 +41,8 @@ public class SpectralBandContainer : MonoBehaviour
     private int countMatched = 0;
     private const int totalMatched = 1;
 
+    [SerializeField] private GameObject spaceHint;
+
     public void SetType(string bandType)
     {
         type = bandType;
@@ -83,6 +85,8 @@ public class SpectralBandContainer : MonoBehaviour
         {
             OnFilled?.Invoke(type);
         }
+
+        spaceHint.SetActive(false);
     }
 
     Color GetColor()
@@ -172,6 +176,16 @@ public class SpectralBandContainer : MonoBehaviour
         {
             OnHover?.Invoke(type);
         }
+
+        if(other.CompareTag("Player"))
+        {
+            GameObject grabbedObject = other.GetComponent<PlayerController>().grabbedObject;
+
+            if(grabbedObject != null && grabbedObject.GetComponent<SampleSpectralBand>() != null && IsMatch(grabbedObject.GetComponent<SampleSpectralBand>()))
+            {
+                spaceHint.SetActive(true);
+            }
+        }
     }
 
     private void OnTriggerStay2D(Collider2D other)
@@ -187,6 +201,11 @@ public class SpectralBandContainer : MonoBehaviour
         if (countMatched > 0)
         {
             OnUnhover?.Invoke(type);
+        }
+
+        if(other.CompareTag("Player"))
+        {
+            spaceHint.SetActive(false);
         }
     }
 

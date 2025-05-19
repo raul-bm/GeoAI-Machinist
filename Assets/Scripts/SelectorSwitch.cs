@@ -21,6 +21,8 @@ public class SelectorSwitch : MonoBehaviour
 
     string lineState = "inactive"; // inactive, wrong, correct
 
+    [SerializeField] private GameObject spaceHint;
+
     void Awake()
     {
         Transform line = transform.Find("OutputLine");
@@ -89,6 +91,7 @@ public class SelectorSwitch : MonoBehaviour
 
     public void Switch()
     {
+        spaceHint.SetActive(false);
         active = !active;
         animator.SetTrigger("switch");
         OnSwitch?.Invoke();
@@ -159,6 +162,22 @@ public class SelectorSwitch : MonoBehaviour
                 lineRenderer.startColor = inactiveColor;
                 lineRenderer.endColor = inactiveColor;
                 break;
+        }
+    }
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            if(!active) spaceHint.SetActive(true);
+        }
+    }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if (other.CompareTag("Player"))
+        {
+            spaceHint.SetActive(false);
         }
     }
 }

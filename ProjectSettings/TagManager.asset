@@ -22,6 +22,7 @@ TagManager:
   - ActivationBox
   - LogitNode
   - CommandCenter
+  - PoolingBox
   layers:
   - Default
   - TransparentFX

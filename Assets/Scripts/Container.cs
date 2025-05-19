@@ -83,7 +83,7 @@ public class Container : MonoBehaviour
         OnHover?.Invoke(type);
 
         // Check if the player have a SampleBox to show the Hint
-        if(other.gameObject.tag == "Player" && other.transform.GetChild(0) != null && other.transform.GetChild(0).tag == "SampleBox" && type != "Residential" && !matched)
+        if(other.gameObject.tag == "Player" && other.transform.childCount != 0 && other.transform.GetChild(0) != null && other.transform.GetChild(0).tag == "SampleBox" && type != "Residential" && !matched)
         {
             spaceHint.SetActive(true);
         }
