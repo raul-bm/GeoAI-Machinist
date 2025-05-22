@@ -122,14 +122,11 @@ public class PlayableDirectorCallback : MonoBehaviour
 
     private void End()
     {
-        dialogueBalloon.isCinematic = false;
         dialogueBalloon.Hide();
         FollowSpeaker(Player.gameObject);
 
         endAnimation.Play();
         transitionFloor.SetActive(true);
-
-        Player.Enable();
     }
 
     public void ZoomIn()

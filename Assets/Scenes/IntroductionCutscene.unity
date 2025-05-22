@@ -1073,7 +1073,7 @@ PrefabInstance:
     - target: {fileID: 8747615313673477046, guid: 72013fef11c50734db318fb83fc9454d, type: 3}
       propertyPath: m_Sprite
       value: 
-      objectReference: {fileID: 120719335, guid: 73666436cc54ccd4b9ca374bb75e4fd6, type: 3}
+      objectReference: {fileID: 141718075, guid: f4ff4f81f864039468cd227233ca203e, type: 3}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1942,6 +1942,8 @@ PlayableDirector:
   m_SceneBindings:
   - key: {fileID: 1068199025108709419, guid: d22b5c3b2dafa6040bd44999d57eb8bf, type: 2}
     value: {fileID: 1088851213}
+  - key: {fileID: -5597245764417178577, guid: d22b5c3b2dafa6040bd44999d57eb8bf, type: 2}
+    value: {fileID: 1628549062}
   m_ExposedReferences:
     m_References: []
 --- !u!4 &687538510
@@ -4522,6 +4524,14 @@ PrefabInstance:
     - target: {fileID: 2457875474877216382, guid: 661c4f25c008ea444b93bd019c7b17f3, type: 3}
       propertyPath: nextScene
       value: SampleScene
+      objectReference: {fileID: 0}
+    - target: {fileID: 3910805595946588197, guid: 661c4f25c008ea444b93bd019c7b17f3, type: 3}
+      propertyPath: m_Size.x
+      value: 0.6496489
+      objectReference: {fileID: 0}
+    - target: {fileID: 3910805595946588197, guid: 661c4f25c008ea444b93bd019c7b17f3, type: 3}
+      propertyPath: m_Offset.x
+      value: 0.17517555
       objectReference: {fileID: 0}
     - target: {fileID: 6274962105652463096, guid: 661c4f25c008ea444b93bd019c7b17f3, type: 3}
       propertyPath: m_LocalPosition.x
