@@ -1246,7 +1246,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.3075479, y: 0.68855, z: -10}
+  m_LocalPosition: {x: 1.3090131, y: 0.68855, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2823,6 +2823,8 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 84899816435b54940b2d006a3e0cf035, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  waitingKey: 0
+  isCinematic: 0
   hintTimeout: 5
   hintTimer: 0
   leftConnection: {fileID: 1516485598}
@@ -3465,6 +3467,22 @@ PrefabInstance:
     - target: {fileID: 5479407835963986259, guid: 5ca2353d8589a5b459bec930122380bd, type: 3}
       propertyPath: m_Name
       value: TimedDialogueBalloon
+      objectReference: {fileID: 0}
+    - target: {fileID: 9060441300644082271, guid: 5ca2353d8589a5b459bec930122380bd, type: 3}
+      propertyPath: m_Size.x
+      value: 0.47484332
+      objectReference: {fileID: 0}
+    - target: {fileID: 9060441300644082271, guid: 5ca2353d8589a5b459bec930122380bd, type: 3}
+      propertyPath: m_Size.y
+      value: 0.59640485
+      objectReference: {fileID: 0}
+    - target: {fileID: 9060441300644082271, guid: 5ca2353d8589a5b459bec930122380bd, type: 3}
+      propertyPath: m_Offset.x
+      value: -0.007097326
+      objectReference: {fileID: 0}
+    - target: {fileID: 9060441300644082271, guid: 5ca2353d8589a5b459bec930122380bd, type: 3}
+      propertyPath: m_Offset.y
+      value: 0.050181538
       objectReference: {fileID: 0}
     m_RemovedComponents:
     - {fileID: 4092997476580920135, guid: 5ca2353d8589a5b459bec930122380bd, type: 3}
