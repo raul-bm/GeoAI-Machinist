@@ -18,6 +18,8 @@ public class CommandCenterPlaybackDirector : MonoBehaviour
     public CommandCenter commandCenter;
     public GameObject screen;
 
+    public GameObject fireworks;
+
     public TextMeshPro conditionsLabel;
     List<(string, string)> screenplay = new List<(string, string)>();
     int currentLineIndex = 0;
@@ -151,6 +153,7 @@ public class CommandCenterPlaybackDirector : MonoBehaviour
         conditionsLabel.text = "28 °C\nReal Feel 32°\nHumidity 50%";
         conditionsLabel.color = Color.green;
         Player.Celebrate();
+        fireworks.SetActive(true);
         NextLine();
     }
 
