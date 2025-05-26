@@ -21,7 +21,7 @@ public class CameraZoom : MonoBehaviour
     readonly float deltaOrthoSize = 0.05f;
     bool IsZooming = false;
 
-    ZoomState zoomState = ZoomState.zoomIn;
+    public ZoomState zoomState = ZoomState.zoomIn;
     ZoomState lastZoomState = ZoomState.zoomMiddle;
 
     [SerializeField] float sensitivity = 0.5f;

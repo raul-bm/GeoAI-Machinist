@@ -4,7 +4,7 @@ using UnityEngine;
 
 public class ZoomOutRegion : MonoBehaviour
 {
-    public CameraZoom cameraZoom;
+    /*public CameraZoom cameraZoom;
     public float zoom = 5f;
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -12,6 +12,17 @@ public class ZoomOutRegion : MonoBehaviour
         if (other.CompareTag("Player"))
         {
             cameraZoom.ChangeZoomSmooth(zoom);
+        }
+    }*/
+
+    public CameraZoom cameraZoom;
+    public GameObject canvasZoomHint;
+
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.CompareTag("Player") && cameraZoom.zoomState != ZoomState.zoomOut)
+        {
+            canvasZoomHint.SetActive(true);
         }
     }
 }
