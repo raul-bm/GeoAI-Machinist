@@ -27,6 +27,13 @@ public class PoolingView : MonoBehaviour
     public int id;
     static int viewCounter = 0;
 
+    public Sprite topLeftRightSpriteCorrect;
+    public Sprite topLeftRightSpriteWrong;
+    public Sprite topLeftRightSpriteInactive;
+    public Sprite bottomSpriteCorrect;
+    public Sprite bottomSpriteWrong;
+    public Sprite bottomSpriteInactive;
+
     // Activation
     bool isApplying = false;
     bool poolingBoxAtInputHolder = false;
@@ -40,7 +47,8 @@ public class PoolingView : MonoBehaviour
     readonly float inactiveWidth = 0.02f;
     private Color workingStartColor;
     private Color workingEndColor;
-    private Color wrongColor = Color.red;
+    private Color wrongStartColor = Color.red;
+    private Color wrongEndColor;
     private Color inactiveColor = Color.gray;
 
     void Awake()
@@ -103,6 +111,7 @@ public class PoolingView : MonoBehaviour
 
         workingStartColor = lineRenderer.startColor;
         workingEndColor = lineRenderer.endColor;
+        wrongEndColor = lineRenderer.endColor;
 
         Vector3 startPoint = new(0f, -0.5f, 0f);
         Vector3 endPoint = new(2.5f, -0.5f, 0f);
@@ -282,13 +291,14 @@ public class PoolingView : MonoBehaviour
             case "correct":
                 outputLineRenderer.startColor = workingStartColor;
                 outputLineRenderer.endColor = workingEndColor;
+                ChangeSpritesScreenCorrect();
                 break;
             case "wrong":
-                outputLineRenderer.material.color = wrongColor;
-                outputLineRenderer.startColor = wrongColor;
-                outputLineRenderer.endColor = wrongColor;
+                outputLineRenderer.startColor = wrongStartColor;
+                outputLineRenderer.endColor = wrongEndColor;
                 outputLineRenderer.startWidth = inactiveWidth;
                 outputLineRenderer.endWidth = inactiveWidth;
+                ChangeSpritesScreenWrong();
                 break;
             case "inactive":
             default:
@@ -297,7 +307,59 @@ public class PoolingView : MonoBehaviour
                 outputLineRenderer.endColor = inactiveColor;
                 outputLineRenderer.startWidth = inactiveWidth;
                 outputLineRenderer.endWidth = inactiveWidth;
+                ChangeSpritesScreenInactive();
                 break;
+        }
+    }
+
+    private void ChangeSpritesScreenCorrect()
+    {
+        GameObject borderGameObject = outputScreen.transform.GetChild(1).gameObject;
+
+        //Change sprites
+        for (int i = 0; i < borderGameObject.transform.childCount; i++)
+        {
+            GameObject childGameObject = borderGameObject.transform.GetChild(i).gameObject;
+
+            for (int j = 0; j < childGameObject.transform.childCount; j++)
+            {
+                if (i != borderGameObject.transform.childCount - 1) childGameObject.transform.GetChild(j).GetComponent<SpriteRenderer>().sprite = topLeftRightSpriteCorrect;
+                else childGameObject.transform.GetChild(j).GetComponent<SpriteRenderer>().sprite = bottomSpriteCorrect;
+            }
+        }
+    }
+
+    private void ChangeSpritesScreenWrong()
+    {
+        GameObject borderGameObject = outputScreen.transform.GetChild(1).gameObject;
+
+        //Change sprites
+        for (int i = 0; i < borderGameObject.transform.childCount; i++)
+        {
+            GameObject childGameObject = borderGameObject.transform.GetChild(i).gameObject;
+
+            for (int j = 0; j < childGameObject.transform.childCount; j++)
+            {
+                if (i != borderGameObject.transform.childCount - 1) childGameObject.transform.GetChild(j).GetComponent<SpriteRenderer>().sprite = topLeftRightSpriteWrong;
+                else childGameObject.transform.GetChild(j).GetComponent<SpriteRenderer>().sprite = bottomSpriteWrong;
+            }
+        }
+    }
+
+    private void ChangeSpritesScreenInactive()
+    {
+        GameObject borderGameObject = outputScreen.transform.GetChild(1).gameObject;
+
+        //Change sprites
+        for (int i = 0; i < borderGameObject.transform.childCount; i++)
+        {
+            GameObject childGameObject = borderGameObject.transform.GetChild(i).gameObject;
+
+            for (int j = 0; j < childGameObject.transform.childCount; j++)
+            {
+                if (i != borderGameObject.transform.childCount - 1) childGameObject.transform.GetChild(j).GetComponent<SpriteRenderer>().sprite = topLeftRightSpriteInactive;
+                else childGameObject.transform.GetChild(j).GetComponent<SpriteRenderer>().sprite = bottomSpriteInactive;
+            }
         }
     }
 
@@ -309,9 +371,10 @@ public class PoolingView : MonoBehaviour
             return;
         }
 
-        if (outputState.Equals("correct"))
+        if (!outputState.Equals("inactive"))
         {
-            outputLineRenderer.material.color = Color.Lerp(Color.white, Color.cyan, Mathf.PingPong(Time.time, 0.5f));
+            //outputLineRenderer.material.color = Color.Lerp(Color.white, Color.cyan, Mathf.PingPong(Time.time, 0.5f));
+            outputLineRenderer.material.color = Color.white;
             outputLineRenderer.startWidth = Mathf.Lerp(inactiveWidth, inactiveWidth * 5, Mathf.PingPong(Time.time, 0.5f));
             outputLineRenderer.endWidth = Mathf.Lerp(inactiveWidth, inactiveWidth * 5, Mathf.PingPong(Time.time, 0.5f));
         }
