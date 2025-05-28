@@ -65,9 +65,11 @@ public class OutputMiniGamePlaybackDirector : MonoBehaviour
     {
         dialogueBalloon.isCinematic = true;
         ClearCallbacks();
+        Player.Disable();
 
         if (screenplay.Count <= currentLineIndex)
         {
+            Player.Enable();
             End();
             return;
         }
@@ -145,7 +147,7 @@ public class OutputMiniGamePlaybackDirector : MonoBehaviour
         ZoomIn();
         cameraZoom.ChangeZoomTarget(inputScreen);
         yield return new WaitForSeconds(2.5f);
-        Player.Enable();
+        
 
         cameraZoom.ChangeZoomTarget(NPC.gameObject);
         NextLine();
@@ -153,6 +155,7 @@ public class OutputMiniGamePlaybackDirector : MonoBehaviour
 
     void WaitPlayerFlatten()
     {
+        Player.Enable();
         dialogueBalloon.Hide();
         ZoomOut();
         cameraZoom.ChangeZoomTarget(Player.gameObject);

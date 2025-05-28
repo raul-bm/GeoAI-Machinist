@@ -5,6 +5,7 @@ using TMPro;
 using Unity.Burst.CompilerServices;
 using UnityEngine;
 using UnityEngine.Playables;
+using UnityEngine.SceneManagement;
 
 public class CommandCenterPlaybackDirector : MonoBehaviour
 {
@@ -24,6 +25,8 @@ public class CommandCenterPlaybackDirector : MonoBehaviour
     List<(string, string)> screenplay = new List<(string, string)>();
     int currentLineIndex = 0;
 
+    private bool isGameEnded = false;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -36,6 +39,14 @@ public class CommandCenterPlaybackDirector : MonoBehaviour
         // // dialogueBalloon = GameObject.Find("DialogueBalloon").GetComponent<DialogueBalloon>();
         // // hintBalloon = GameObject.Find("HintBalloon").GetComponent<HintBalloon>();
         // cameraZoom = GameObject.Find("VirtualCamera").GetComponent<CameraZoom>();
+    }
+
+    private void Update()
+    {
+        if (isGameEnded && Input.GetKeyDown(KeyCode.Space))
+        {
+            SceneManager.LoadScene(0);
+        }
     }
 
     public void StartAnimation()
@@ -154,6 +165,7 @@ public class CommandCenterPlaybackDirector : MonoBehaviour
         conditionsLabel.color = Color.green;
         Player.Celebrate();
         fireworks.SetActive(true);
+        isGameEnded = true;
         NextLine();
     }
 
