@@ -782,6 +782,18 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6799741561001149057, guid: d8b9f25b2827b9446b1e86b4e898760d, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 519420031}
+    - target: {fileID: 6799741561001149057, guid: d8b9f25b2827b9446b1e86b4e898760d, type: 3}
+      propertyPath: m_SortingOrder
+      value: 111
+      objectReference: {fileID: 0}
+    - target: {fileID: 6799741561001149057, guid: d8b9f25b2827b9446b1e86b4e898760d, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1531055085
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1246,7 +1258,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.3090131, y: 0.68855, z: -10}
+  m_LocalPosition: {x: 1.3050265, y: 0.68856, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2165,6 +2177,7 @@ MonoBehaviour:
   virtualCamera: {fileID: 1063811077}
   MaxOrthoSize: 8
   MinOrthoSize: 0.5
+  zoomState: 0
   sensitivity: 1
 --- !u!114 &1063811080
 MonoBehaviour:

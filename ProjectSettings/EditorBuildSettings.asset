@@ -38,5 +38,17 @@ EditorBuildSettings:
   - enabled: 1
     path: Assets/Scenes/PoolingMiniGame.unity
     guid: 76ce7150d85832945b0397689eb95a01
+  - enabled: 1
+    path: Assets/Scenes/ConvolutionalMiniGameSolved.unity
+    guid: 0f8c835ca0dbb194c813d0288905a5b7
+  - enabled: 1
+    path: Assets/Scenes/ActivationMiniGameSolved.unity
+    guid: d5a65bbf1e90625468371075cc151ea3
+  - enabled: 1
+    path: Assets/Scenes/PoolingMiniGameSolved.unity
+    guid: 420bb1d79fc76ba488cc37001787b9ae
+  - enabled: 1
+    path: Assets/Scenes/InputMiniGameSolved.unity
+    guid: ee65f9542e50ec841b87a5587b8a61d9
   m_configObjects:
     com.unity.addressableassets: {fileID: 11400000, guid: 83dbd2ba43be65f45905b2308a6f497d, type: 2}

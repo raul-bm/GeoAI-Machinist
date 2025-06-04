@@ -75,23 +75,30 @@ public class GameManager : MonoBehaviour
         switch (type)
         {
             case "Input":
-                UnityEngine.SceneManagement.SceneManager.LoadScene(5);
+                if(!IsSolved(type)) UnityEngine.SceneManagement.SceneManager.LoadScene(5);
+                else UnityEngine.SceneManagement.SceneManager.LoadScene(14);
                 playerPositionOverview = new Vector2Int(3, 8);
                 break;
             case "Convolutional 1":
-                UnityEngine.SceneManagement.SceneManager.LoadScene(6);
+                if(!IsSolved(type)) UnityEngine.SceneManagement.SceneManager.LoadScene(6);
+                else UnityEngine.SceneManagement.SceneManager.LoadScene(11);
                 playerPositionOverview = new Vector2Int(6, 8);
                 break;
             case "Activation 1":
-                UnityEngine.SceneManagement.SceneManager.LoadScene(8);
+                if (!IsSolved(type)) UnityEngine.SceneManagement.SceneManager.LoadScene(8);
+                else UnityEngine.SceneManagement.SceneManager.LoadScene(12);
                 playerPositionOverview = new Vector2Int(9, 8);
                 break;
             case "Output":
-                UnityEngine.SceneManagement.SceneManager.LoadScene(9);
-                playerPositionOverview = new Vector2Int(12, 2);
+                if(IsSolved("Input") && IsSolved("Convolutional 1") && IsSolved("Activation 1") && IsSolved("Pooling 1"))
+                {
+                    UnityEngine.SceneManagement.SceneManager.LoadScene(9);
+                    playerPositionOverview = new Vector2Int(12, 2);
+                }
                 break;
             case "Pooling 1":
-                UnityEngine.SceneManagement.SceneManager.LoadScene(10);
+                if(!IsSolved(type)) UnityEngine.SceneManagement.SceneManager.LoadScene(10);
+                else UnityEngine.SceneManagement.SceneManager.LoadScene(13);
                 playerPositionOverview = new Vector2Int(6, 5);
                 break;
             default:

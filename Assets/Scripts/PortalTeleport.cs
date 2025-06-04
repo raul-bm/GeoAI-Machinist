@@ -13,10 +13,10 @@ public class PortalTeleport : MonoBehaviour
             if (parent != null)
             {
                 CNNLayer layer = parent.GetComponent<CNNLayer>();
-                if (GameManager.instance.IsSolved(layer.type))
+                /*if (GameManager.instance.IsSolved(layer.type))
                 {
                     return;
-                }
+                }*/
 
                 GameManager.instance.StartMiniGame(layer.type);
             }

@@ -2629,6 +2629,18 @@ PrefabInstance:
       propertyPath: m_IsActive
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6799741561001149057, guid: d8b9f25b2827b9446b1e86b4e898760d, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 302670125}
+    - target: {fileID: 6799741561001149057, guid: d8b9f25b2827b9446b1e86b4e898760d, type: 3}
+      propertyPath: m_SortingOrder
+      value: 111
+      objectReference: {fileID: 0}
+    - target: {fileID: 6799741561001149057, guid: d8b9f25b2827b9446b1e86b4e898760d, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1531055085
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []

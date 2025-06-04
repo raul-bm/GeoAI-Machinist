@@ -22,7 +22,7 @@ public class CameraZoom : MonoBehaviour
     bool IsZooming = false;
 
     public ZoomState zoomState = ZoomState.zoomIn;
-    ZoomState lastZoomState = ZoomState.zoomMiddle;
+    ZoomState lastZoomState = ZoomState.zoomOut;
 
     [SerializeField] float sensitivity = 0.5f;
     bool disableControlZoom = false;
@@ -34,6 +34,7 @@ public class CameraZoom : MonoBehaviour
     private void Awake()
     {
         ValuesChanged(PlayerPrefs.GetFloat("minZoomValue"), PlayerPrefs.GetFloat("maxZoomValue"));
+        lastZoomState = ZoomState.zoomOut;
         ZoomMiddle();
     }
 

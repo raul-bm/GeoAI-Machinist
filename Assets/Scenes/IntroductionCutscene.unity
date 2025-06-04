@@ -1017,6 +1017,7 @@ MonoBehaviour:
   virtualCamera: {fileID: 331522296}
   MaxOrthoSize: 8
   MinOrthoSize: 0.5
+  zoomState: 0
   sensitivity: 0.5
 --- !u!1001 &344411394
 PrefabInstance:
@@ -1902,6 +1903,18 @@ PrefabInstance:
     - target: {fileID: 5542676100139935534, guid: d8b9f25b2827b9446b1e86b4e898760d, type: 3}
       propertyPath: m_IsActive
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6799741561001149057, guid: d8b9f25b2827b9446b1e86b4e898760d, type: 3}
+      propertyPath: m_Camera
+      value: 
+      objectReference: {fileID: 1728935482}
+    - target: {fileID: 6799741561001149057, guid: d8b9f25b2827b9446b1e86b4e898760d, type: 3}
+      propertyPath: m_SortingOrder
+      value: 111
+      objectReference: {fileID: 0}
+    - target: {fileID: 6799741561001149057, guid: d8b9f25b2827b9446b1e86b4e898760d, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1531055085
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
