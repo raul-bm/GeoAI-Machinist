@@ -577,7 +577,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: e45b6be6d3fa1e44fb919dd3c0a6164e, type: 2}
   - {fileID: 11400000, guid: ac71bbeaff8a12344b2d52f6e8cce75e, type: 2}
   exitXPosition: 7
-  exitObject: {fileID: 1342552224242970805, guid: 4d977a9afc2d6d84788134605a8eb3bb, type: 3}
+  exitObject: {fileID: 8912301626592835870, guid: 045394caf504cf942a8baa36360e8ff7, type: 3}
   Player: {fileID: 4603652088259903135}
   NPC: {fileID: 6048908290853480485}
   invisibleWall: {fileID: 1923504658405240674, guid: 5b9a28e5f9f29de418a7d0a614a5c1f6, type: 3}
@@ -1258,7 +1258,7 @@ Transform:
   m_GameObject: {fileID: 519420028}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.3050265, y: 0.68856, z: -10}
+  m_LocalPosition: {x: 1.307778, y: 0.68855, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []

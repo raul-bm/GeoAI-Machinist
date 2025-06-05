@@ -411,12 +411,12 @@ public class PlayerController : MonoBehaviour
             return;
         }
 
-        if (nearObject && nearObject.CompareTag("Exit"))
+        /*if (nearObject && nearObject.CompareTag("Exit"))
         {
             Exit exit = nearObject.GetComponent<Exit>();
             exit.AttemptExit();
             return;
-        }
+        }*/
 
         /*if (nearObject && nearObject.CompareTag("CNNLayer"))
         {

@@ -14,7 +14,6 @@ public class Exit : MonoBehaviour
     public int TotalContainers = 10;
     private static int amountMatchedContainers;
 
-    public Sprite unlockedDoor;
     private static bool isUnlocked = false;
 
     private static SpriteRenderer spriteRenderer;
@@ -23,6 +22,8 @@ public class Exit : MonoBehaviour
     private static AudioSource audioSource;
     public AudioClip unlockClip;
     public AudioClip exitClip;
+
+    public GameObject portalCollider;
 
 
     // Start is called before the first frame update
@@ -61,12 +62,12 @@ public class Exit : MonoBehaviour
     {
         isUnlocked = true;
         PlaySound(unlockClip);
-        spriteRenderer.sprite = unlockedDoor;
         spriteRenderer.color = Color.green;
+        portalCollider.SetActive(false);
         OnUnlockExit?.Invoke();
     }
 
-    public void AttemptExit()
+    /*public void AttemptExit()
     {
         StartCoroutine(DoExit());
     }
@@ -101,11 +102,15 @@ public class Exit : MonoBehaviour
     {
         GameObject[] coins = GameObject.FindGameObjectsWithTag("Coin");
         return coins.Count() == 0;
-    }
+    }*/
 
     public void PlaySound(AudioClip clip)
     {
         audioSource.PlayOneShot(clip);
     }
 
+    private void OnTriggerEnter2D(Collider2D other)
+    {
+        if(other.CompareTag("Player")) GameManager.instance.StartOverviewScene();
+    }
 }

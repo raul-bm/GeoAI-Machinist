@@ -23,6 +23,7 @@ TagManager:
   - LogitNode
   - CommandCenter
   - PoolingBox
+  - Wormhole
   layers:
   - Default
   - TransparentFX

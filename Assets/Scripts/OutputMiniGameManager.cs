@@ -167,6 +167,8 @@ public class OutputMiniGameManager : BaseBoard
         dialogueBalloon.OnDone -= GameOver;
         StartCoroutine(AnimateGameOver());
 
+        GameObject.FindGameObjectWithTag("Wormhole").GetComponent<SpriteRenderer>().color = Color.green;
+
         GameManager.instance.solvedMinigames["Output"] = true;
 
         // Player.Enable();

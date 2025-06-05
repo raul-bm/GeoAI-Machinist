@@ -261,11 +261,11 @@ public class DataLabelingMiniGameManager : BaseBoard
     {
         cameraZoom.ChangeZoomTarget(exitScript.gameObject);
 
-        hintBalloon.SetSpaceKey();
+        /*hintBalloon.SetSpaceKey();
         hintBalloon.SetTarget(exitScript.gameObject);
         hintBalloon.PlaceOver();
         hintBalloon.SetWaitKey(false);
-        hintBalloon.Show();
+        hintBalloon.Show();*/
 
         yield return new WaitForSeconds(2);
 

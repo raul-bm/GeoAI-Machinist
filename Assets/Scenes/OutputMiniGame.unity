@@ -5161,7 +5161,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6f718263822ffa640a5133b44eaf7f38, type: 2}
   - {fileID: 11400000, guid: 0b731c617ed791744a491f3fe93c23f6, type: 2}
   exitXPosition: 3
-  exitObject: {fileID: 8191159248190923328, guid: 661c4f25c008ea444b93bd019c7b17f3, type: 3}
+  exitObject: {fileID: 8912301626592835870, guid: 1dcea3b240e62e44fbdcf3d868191058, type: 3}
   Player: {fileID: 503394038}
   NPC: {fileID: 653875758}
   denseViewObject: {fileID: 8043865356184850180, guid: 7090b32725d0b634d887ae542a775cfd, type: 3}
