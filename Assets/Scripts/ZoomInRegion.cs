@@ -26,4 +26,12 @@ public class ZoomInRegion : MonoBehaviour
             canvasZoomHint.SetActive(true);
         }
     }
+
+    private void OnTriggerExit2D(Collider2D other)
+    {
+        if(other.CompareTag("Player"))
+        {
+            canvasZoomHint.SetActive(false);
+        }
+    }
 }
