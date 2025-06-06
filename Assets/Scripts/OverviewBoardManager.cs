@@ -18,6 +18,8 @@ public class OverviewBoardManager : BaseBoard
 
     public CameraZoom cameraZoom;
 
+    public GameObject outputCollider;
+
     static bool firstLoad = true;
 
     // Start is called before the first frame update
@@ -208,6 +210,15 @@ public class OverviewBoardManager : BaseBoard
             instance.GetComponent<CNNLayer>().OnHover += DisplayLayerInfo;
             instance.GetComponent<CNNLayer>().OnUnhover += HideLayerInfo;
         }
+
+        int numSolvedMinigames = 0;
+
+        foreach (var solvedMinigameKeyValue in GameManager.instance.solvedMinigames)
+        {
+            if (solvedMinigameKeyValue.Value) numSolvedMinigames++;
+        }
+
+        if (numSolvedMinigames == GameManager.instance.solvedMinigames.Count - 1) outputCollider.SetActive(false);
     }
 
     void LayoutInputHolder()
@@ -248,10 +259,27 @@ public class OverviewBoardManager : BaseBoard
 
         bool solved = GameManager.instance.solvedMinigames[type];
         string message = myDict[type];
-        if (!solved)
+
+        int numSolvedMinigames = 0;
+
+        foreach(var solvedMinigameKeyValue in GameManager.instance.solvedMinigames)
+        {
+            if (solvedMinigameKeyValue.Value) numSolvedMinigames++;
+        }
+
+        if (type == "Output" && numSolvedMinigames < myDict.Count - 1)
+        {
+            message += " I have to fix the other layers before fixing this one.";
+        }
+        else if (type == "Output")
+        {
+            message += " I can fix it now!";
+        }
+        else if (!solved)
         {
             message += " It is damaged, so I need to enter to fix it.";
         }
+
         timedDialogueBalloon.SetSpeaker(Player.gameObject);
         timedDialogueBalloon.SetMessage(message);
         timedDialogueBalloon.PlaceUpperLeft();
