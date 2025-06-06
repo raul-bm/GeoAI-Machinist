@@ -33,7 +33,7 @@ public class OutputMiniGamePlaybackDirector : MonoBehaviour
         new("NPC", "At this point, each layer has extracted and highlighted features in the image."),
         new("NPC", "Follow me to see how the image looks now."), // instruction
         new("action", "action1"), // Robot Walk
-        new("action", "action2"), // Wait Player
+        //new("action", "action2"), // Wait Player
         new("action", "action3"), // Show feature map
         new("NPC", "We cannot interpret the extracted features, and we don't have the classification result yet."),
         new("NPC", "Find and activate the Flattenning Pull Lever to flatten the matrix representing the image."),
