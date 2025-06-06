@@ -201,7 +201,7 @@ public class DialogueBalloon : MonoBehaviour
             return;
         }
 
-        if (Input.GetKeyDown(KeyCode.Space) && isCinematic)
+        if (Input.GetKeyDown(KeyCode.Space) && isCinematic && Time.timeScale == 1f)
         {
             if(dialogueTyping)
             {
