@@ -57,7 +57,7 @@ public class CameraZoom : MonoBehaviour
             }
         }*/
 
-        if (Input.GetKeyDown(KeyCode.Q))
+        if (Input.GetKeyDown(KeyCode.Z))
         {
             if(zoomState == ZoomState.zoomIn || zoomState == ZoomState.zoomOut)
             {

@@ -37,7 +37,7 @@ public class InputSolvedManager : BaseBoard
     {
         { "red", "The Red band is useful for identifying urban areas, vegetation types, and soils." },
         { "blue", "The Blue band is useful for identifying man-made features and soil and vegetation discrimination." },
-        { "redEdge", "The Red Edge spectral band is a good choice. It has high reflectance on vegetation and low reflectance on buildings." },
+        { "redEdge", "The Red Edge spectral band helps to determine high reflectance on vegetation and low reflectance on buildings." },
         { "green", "The Green band helps spot healthy vegetation, and it also helps to identify water and built-up areas." }
     };
 

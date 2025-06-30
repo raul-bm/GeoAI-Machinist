@@ -38,9 +38,11 @@ public class PoolingMiniGamePlaybackDirector : MonoBehaviour
     void InitializeScreenplay()
     {
         screenplay = new List<(string, string)>() {
-        new("NPC", "This room is the Pooling Layer of the CNN. This layer reduces the size of the data while keeps the important features."),
-        new("NPC", "Pooling helps the network and computers become faster and more efficient by compressing small regions of the image."),
-        new("NPC", "It ensures the CNN can still recognize important features, like roads or rivers."),
+        new("NPC", "This room is the Pooling Layer of the CNN. This layer reduces the size of the data while keeping the important features."),
+        new("NPC", "Pooling reduces the image dimensions by combining small regions to a single (representative) value."),
+        new("NPC", "Besides reducing the computational cost, this also helps to handle (small) distortions in the input and consolidate dominant features."),
+        //new("NPC", "Pooling helps the network and computers become faster and more efficient by compressing small regions of the image."),
+        //new("NPC", "It ensures the CNN can still recognize important features, like roads or rivers."),
         new("NPC", "Place, in the input holder, the best pooling strategy to preserve key features while reducing complexity."),
         };
     }

@@ -540,7 +540,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -101479879
   m_SortingLayer: 5
-  m_SortingOrder: 111
+  m_SortingOrder: 4
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &383464726
 GameObject:
@@ -614,7 +614,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -101479879
   m_SortingLayer: 5
-  m_SortingOrder: 2
+  m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1399,7 +1399,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -101479879
   m_SortingLayer: 5
-  m_SortingOrder: 2
+  m_SortingOrder: 3
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1956,7 +1956,7 @@ Transform:
   m_GameObject: {fileID: 1314770080}
   serializedVersion: 2
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 1.5604603, y: 1.3130599, z: -10}
+  m_LocalPosition: {x: 1.5618653, y: 1.3130699, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -2281,6 +2281,63 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
+--- !u!1001 &1430709460
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2615929334690383114, guid: 455b7c27af1d1f143b720e44a87c004c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 5.857524
+      objectReference: {fileID: 0}
+    - target: {fileID: 2615929334690383114, guid: 455b7c27af1d1f143b720e44a87c004c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.5771465
+      objectReference: {fileID: 0}
+    - target: {fileID: 2615929334690383114, guid: 455b7c27af1d1f143b720e44a87c004c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.0026190383
+      objectReference: {fileID: 0}
+    - target: {fileID: 2615929334690383114, guid: 455b7c27af1d1f143b720e44a87c004c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2615929334690383114, guid: 455b7c27af1d1f143b720e44a87c004c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2615929334690383114, guid: 455b7c27af1d1f143b720e44a87c004c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2615929334690383114, guid: 455b7c27af1d1f143b720e44a87c004c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2615929334690383114, guid: 455b7c27af1d1f143b720e44a87c004c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2615929334690383114, guid: 455b7c27af1d1f143b720e44a87c004c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2615929334690383114, guid: 455b7c27af1d1f143b720e44a87c004c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8015637708893727839, guid: 455b7c27af1d1f143b720e44a87c004c, type: 3}
+      propertyPath: m_Name
+      value: FullscreenFocusFix
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 455b7c27af1d1f143b720e44a87c004c, type: 3}
 --- !u!1 &1631261308
 GameObject:
   m_ObjectHideFlags: 0
@@ -2983,7 +3040,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -101479879
   m_SortingLayer: 5
-  m_SortingOrder: 111
+  m_SortingOrder: 2
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!4 &1917714774 stripped
 Transform:
@@ -3271,3 +3328,4 @@ SceneRoots:
   - {fileID: 1085992759}
   - {fileID: 1285133226}
   - {fileID: 1817279845}
+  - {fileID: 1430709460}

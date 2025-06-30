@@ -6,7 +6,7 @@ public class CanvasZoomHint : MonoBehaviour
 {
     void Update()
     {
-        if(Input.GetKeyDown(KeyCode.Q) && gameObject.activeSelf)
+        if(Input.GetKeyDown(KeyCode.Z) && gameObject.activeSelf)
         {
             gameObject.SetActive(false);
         }

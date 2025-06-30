@@ -79,7 +79,7 @@ public class OverviewBoardManager : BaseBoard
         NPCDialogueBalloon.isCinematic = true;
         ZoomIn();
         NPCDialogueBalloon.SetSpeaker(NPC.gameObject);
-        NPCDialogueBalloon.SetMessage("This room has a Convolutional Neural Network (CNN) to classify land use and cover. A Convolutional Neural Network is a sequence of stages to extract information from images.\nFour layers are damaged—enter their room to fix them!");
+        NPCDialogueBalloon.SetMessage("This room has a Convolutional Neural Network (CNN) to classify land use and cover. A Convolutional Neural Network is a sequence of stages to extract information from images.\nFour stages are damaged—enter their room to fix them!");
         NPCDialogueBalloon.PlaceUpperRight();
         NPCDialogueBalloon.Show();
         NPCDialogueBalloon.OnDone += NPCDialogueBalloon.Hide;

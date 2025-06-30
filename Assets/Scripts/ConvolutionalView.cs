@@ -42,7 +42,7 @@ public class ConvolutionalView : MonoBehaviour
     // TODO: abstract OutputLine
     string outputState = "inactive"; // inactice, wrong, correct
     LineRenderer outputLineRenderer;
-    readonly float inactiveWidth = 0.02f;
+    readonly float inactiveWidth = 0.05f;
     private Color workingStartColor;
     private Color workingEndColor;
     private Color wrongStartColor = Color.red;
@@ -328,6 +328,7 @@ public class ConvolutionalView : MonoBehaviour
                 ChangeSpritesScreenCorrect();
                 break;
             case "wrong":
+                outputLineRenderer.material.color = Color.white;
                 outputLineRenderer.startColor = wrongStartColor;
                 outputLineRenderer.endColor = wrongEndColor;
                 outputLineRenderer.startWidth = inactiveWidth;
@@ -405,7 +406,7 @@ public class ConvolutionalView : MonoBehaviour
             return;
         }
 
-        if (!outputState.Equals("inactive"))
+        if (outputState.Equals("correct"))
         {
             //outputLineRenderer.material.color = Color.Lerp(Color.white, Color.cyan, Mathf.PingPong(Time.time, 0.5f));
             outputLineRenderer.material.color = Color.white;

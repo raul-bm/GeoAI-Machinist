@@ -13,6 +13,7 @@ public class HomeScene : MonoBehaviour
         // 1 - Sample Scene
         // 2 - Overview Scene
         // 7 - Introduction CutsCene
+        GameManager.instance.ResetSolvedMinigames();
         UnityEngine.SceneManagement.SceneManager.LoadScene(7);
         // GameManager.instance.StartOverviewScene();
     }

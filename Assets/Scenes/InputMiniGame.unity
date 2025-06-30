@@ -335,7 +335,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -101479879
   m_SortingLayer: 5
-  m_SortingOrder: 2
+  m_SortingOrder: 1
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -516,7 +516,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -101479879
   m_SortingLayer: 5
-  m_SortingOrder: 111
+  m_SortingOrder: 2
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &140822403
 GameObject:
@@ -1100,6 +1100,10 @@ PrefabInstance:
       propertyPath: m_Sprite
       value: 
       objectReference: {fileID: -734659624, guid: f4ff4f81f864039468cd227233ca203e, type: 3}
+    - target: {fileID: 8747615313673477046, guid: 72013fef11c50734db318fb83fc9454d, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -1331,7 +1335,7 @@ SpriteRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -101479879
   m_SortingLayer: 5
-  m_SortingOrder: 2
+  m_SortingOrder: 3
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
@@ -1881,6 +1885,63 @@ Animator:
   m_CorrespondingSourceObject: {fileID: 6745150251627130939, guid: 5ca2353d8589a5b459bec930122380bd, type: 3}
   m_PrefabInstance: {fileID: 925519513}
   m_PrefabAsset: {fileID: 0}
+--- !u!1001 &1041889581
+PrefabInstance:
+  m_ObjectHideFlags: 0
+  serializedVersion: 2
+  m_Modification:
+    serializedVersion: 3
+    m_TransformParent: {fileID: 0}
+    m_Modifications:
+    - target: {fileID: 2615929334690383114, guid: 455b7c27af1d1f143b720e44a87c004c, type: 3}
+      propertyPath: m_LocalPosition.x
+      value: 5.857524
+      objectReference: {fileID: 0}
+    - target: {fileID: 2615929334690383114, guid: 455b7c27af1d1f143b720e44a87c004c, type: 3}
+      propertyPath: m_LocalPosition.y
+      value: 4.5771465
+      objectReference: {fileID: 0}
+    - target: {fileID: 2615929334690383114, guid: 455b7c27af1d1f143b720e44a87c004c, type: 3}
+      propertyPath: m_LocalPosition.z
+      value: -0.0026190383
+      objectReference: {fileID: 0}
+    - target: {fileID: 2615929334690383114, guid: 455b7c27af1d1f143b720e44a87c004c, type: 3}
+      propertyPath: m_LocalRotation.w
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 2615929334690383114, guid: 455b7c27af1d1f143b720e44a87c004c, type: 3}
+      propertyPath: m_LocalRotation.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2615929334690383114, guid: 455b7c27af1d1f143b720e44a87c004c, type: 3}
+      propertyPath: m_LocalRotation.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2615929334690383114, guid: 455b7c27af1d1f143b720e44a87c004c, type: 3}
+      propertyPath: m_LocalRotation.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2615929334690383114, guid: 455b7c27af1d1f143b720e44a87c004c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.x
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2615929334690383114, guid: 455b7c27af1d1f143b720e44a87c004c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.y
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 2615929334690383114, guid: 455b7c27af1d1f143b720e44a87c004c, type: 3}
+      propertyPath: m_LocalEulerAnglesHint.z
+      value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 8015637708893727839, guid: 455b7c27af1d1f143b720e44a87c004c, type: 3}
+      propertyPath: m_Name
+      value: FullscreenFocusFix
+      objectReference: {fileID: 0}
+    m_RemovedComponents: []
+    m_RemovedGameObjects: []
+    m_AddedGameObjects: []
+    m_AddedComponents: []
+  m_SourcePrefab: {fileID: 100100000, guid: 455b7c27af1d1f143b720e44a87c004c, type: 3}
 --- !u!1 &1066777995
 GameObject:
   m_ObjectHideFlags: 0
@@ -3106,7 +3167,7 @@ MeshRenderer:
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: -101479879
   m_SortingLayer: 5
-  m_SortingOrder: 111
+  m_SortingOrder: 4
   m_AdditionalVertexStreams: {fileID: 0}
 --- !u!1 &1925381223
 GameObject:
@@ -3367,3 +3428,4 @@ SceneRoots:
   - {fileID: 496850612}
   - {fileID: 1834458550}
   - {fileID: 1542265562}
+  - {fileID: 1041889581}

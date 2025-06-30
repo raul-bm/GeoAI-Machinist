@@ -32,7 +32,8 @@ public class ConvolutionalMiniGamePlaybackDirector : MonoBehaviour
     {
         screenplay = new List<(string, string)>() {
         new("NPC", "This room is a Convolutional Layer of the CNN. It applies a filter, known as ‘kernel’, to an input image, through matrix multiplication on their matrix representations."),
-        new("NPC", "A kernel is a matrix with pre-determined values to enhance features in an image. You can see a kernel blinking over there."),
+        new("NPC", "A kernel is a matrix with pre-determined values to enhance particular features (like a horizontal edge or a corner) in an image. You can see a kernel blinking over there."),
+        new("NPC", "Applying a kernel on an image generates a \"feature map\", which highlights a particular type of feature."),
         // new("action", "action1"), // Robot Walk and Hint Kernel
         // new("action", "action2"), // Hint Kernel
         new("NPC", "Place the kernel in the input holder to start a convolution."),

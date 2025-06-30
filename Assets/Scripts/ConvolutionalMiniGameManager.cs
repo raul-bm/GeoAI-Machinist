@@ -272,10 +272,10 @@ public class ConvolutionalMiniGameManager : BaseBoard
         switch (id)
         {
             case 1:
-                message = "This is a vertical edge detection kernel.";
+                message = "This is a vertical edge detection kernel. It highlights vertical features, such as vertical agricultural fields boundaries, edges of water bodies or forests.";
                 break;
             case 2:
-                message = "This is a horizontal edge detection kernel.";
+                message = "This is a horizontal edge detection kernel. It highlights horizontal features, such as horizontal agricultural field boundaries, coastlines or riverbanks.";
                 break;
             case 3:
                 message = "This kernel detects continuous regions, not just edges, and assigns different pixel values (shades of blue) to highlight different areas.";
