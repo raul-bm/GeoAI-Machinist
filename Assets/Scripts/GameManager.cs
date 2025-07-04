@@ -58,7 +58,7 @@ public class GameManager : MonoBehaviour
         // Debug.Log("Wake Game Manger");
     }
 
-    private void Update()
+    /*private void Update()
     {
         // Input SOLVED
         if (Input.GetKey(KeyCode.LeftShift) && Input.GetKeyDown(KeyCode.Alpha1))
@@ -163,7 +163,7 @@ public class GameManager : MonoBehaviour
 
             StartOverviewScene();
         }
-    }
+    }*/
 
     public void ResetSolvedMinigames()
     {
