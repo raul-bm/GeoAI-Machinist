@@ -52,6 +52,7 @@ public class Container : MonoBehaviour
         sampleBox.gameObject.transform.parent = gameObject.transform;
         sampleBox.gameObject.transform.position = new Vector3(gameObject.transform.position.x, gameObject.transform.position.y + verticalOffset);
         sampleBox.FitInContainer();
+        sampleBox.ChangeSpritesToRight();
 
         OnMatch?.Invoke();
         OnMatchDisplay?.Invoke(type);

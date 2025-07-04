@@ -53,7 +53,11 @@ class Turn
 
     public string GetMessage(string bandName)
     {
-        if (IsCharacteristicBand(bandName))
+        if (IsCharacteristicBand(bandName) && wrong.Count > 0)
+        {
+            return "I classified the spectral band correctly, but I have to take off the wrong spectral bands.";
+        }
+        else if (IsCharacteristicBand(bandName))
         {
             switch (sampleName)
             {
@@ -161,6 +165,12 @@ class Turn
                 allCharacteristicSelected = false;
             }
         }
+
+        if(wrong.Count > 0)
+        {
+            allCharacteristicSelected = false;
+        }
+
         return allCharacteristicSelected;
     }
 

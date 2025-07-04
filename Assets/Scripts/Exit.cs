@@ -58,13 +58,18 @@ public class Exit : MonoBehaviour
         }
     }
 
-    private void UnlockExit()
+    public void UnlockExit()
     {
         isUnlocked = true;
         PlaySound(unlockClip);
         spriteRenderer.color = Color.green;
         portalCollider.SetActive(false);
         OnUnlockExit?.Invoke();
+    }
+
+    public void UnlockCollider()
+    {
+        portalCollider.SetActive(false);
     }
 
     /*public void AttemptExit()

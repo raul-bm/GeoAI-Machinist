@@ -410,8 +410,8 @@ public class ConvolutionalView : MonoBehaviour
         {
             //outputLineRenderer.material.color = Color.Lerp(Color.white, Color.cyan, Mathf.PingPong(Time.time, 0.5f));
             outputLineRenderer.material.color = Color.white;
-            outputLineRenderer.startWidth = Mathf.Lerp(inactiveWidth, inactiveWidth * 5, Mathf.PingPong(Time.time, 0.5f));
-            outputLineRenderer.endWidth = Mathf.Lerp(inactiveWidth, inactiveWidth * 5, Mathf.PingPong(Time.time, 0.5f));
+            outputLineRenderer.startWidth = Mathf.Lerp(inactiveWidth, inactiveWidth * 9, Mathf.PingPong(Time.time, 0.5f));
+            outputLineRenderer.endWidth = Mathf.Lerp(inactiveWidth, inactiveWidth * 9, Mathf.PingPong(Time.time, 0.5f));
 
         }
     }

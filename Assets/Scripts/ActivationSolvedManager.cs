@@ -179,6 +179,10 @@ public class ActivationSolvedManager : BaseBoard
     protected override void GameOver()
     {
         GameManager.instance.solvedMinigames["Activation 1"] = true;
-        GameManager.instance.StartOverviewScene();
+
+        Player.Enable();
+        cameraZoom.ChangeZoomTarget(Player.gameObject);
+
+        GameObject.FindGameObjectWithTag("Wormhole").GetComponent<SpriteRenderer>().color = Color.green;
     }
 }

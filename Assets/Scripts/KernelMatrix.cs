@@ -160,7 +160,7 @@ public class KernelMatrix : MonoBehaviour
         {
             GameObject grabbedObject = other.GetComponent<PlayerController>().grabbedObject;
 
-            if (grabbedObject == null) spaceHint.SetActive(true);
+            if (grabbedObject == null && (this.transform.parent == null || !this.transform.parent.CompareTag("InputHolder"))) spaceHint.SetActive(true);
         }
     }
 

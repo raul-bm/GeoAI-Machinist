@@ -59,6 +59,18 @@ public class DialogueBalloon : MonoBehaviour
             leftConnection.SetActive(false);
             rightConnection.SetActive(true);
         }
+        else if(relativePosition == "upperRightNoOne")
+        {
+            transform.position = new(speaker.transform.position.x + xOffset, speaker.transform.position.y + yOffset, speaker.transform.position.z);
+            leftConnection.SetActive(false);
+            rightConnection.SetActive(false);
+        }
+        else if(relativePosition == "upperLeftNoOne")
+        {
+            transform.position = new(speaker.transform.position.x - xOffset, speaker.transform.position.y + yOffset, speaker.transform.position.z);
+            leftConnection.SetActive(false);
+            rightConnection.SetActive(false);
+        }
     }
 
     public void SetSpeaker(GameObject newSpeaker)
@@ -75,6 +87,18 @@ public class DialogueBalloon : MonoBehaviour
     public void PlaceUpperRight()
     {
         relativePosition = "upperRight";
+        Place();
+    }
+
+    public void PlaceUpperLeftNoOne()
+    {
+        relativePosition = "upperLeftNoOne";
+        Place();
+    }
+
+    public void PlaceUpperRightNoOne()
+    {
+        relativePosition = "upperRightNoOne";
         Place();
     }
 
@@ -181,7 +205,7 @@ public class DialogueBalloon : MonoBehaviour
             if (isIntroduction)
             {
                 // Debug.Log("Show Press SPACE");
-                label.text += "\n(Press SPACE)";
+                //label.text += "\n(Press SPACE)";
                 isIntroduction = false;
             }
         }

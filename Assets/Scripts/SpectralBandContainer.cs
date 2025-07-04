@@ -38,6 +38,10 @@ public class SpectralBandContainer : MonoBehaviour
     };
 
     public event Action<string> OnFilled;
+    public event Action<string> OnUnfilled;
+
+    public bool isFilled = false;
+
     private int countMatched = 0;
     private const int totalMatched = 1;
 
@@ -62,7 +66,7 @@ public class SpectralBandContainer : MonoBehaviour
         return sampleSpectralBand.GetBandType().Equals(type);
     }
 
-    public void MatchSpectralBand(SampleSpectralBand sampleSpectralBand)
+    public void MatchSpectralBand (SampleSpectralBand sampleSpectralBand)
     {
         Transform parentSquare = transform;
         if (parentSquare == null)
@@ -80,13 +84,27 @@ public class SpectralBandContainer : MonoBehaviour
         sampleSpectralBand.gameObject.transform.position = new Vector3(parentSquare.position.x, parentSquare.position.y);
         sampleSpectralBand.Block();
 
-        countMatched++;
-        if (countMatched == totalMatched)
-        {
-            OnFilled?.Invoke(type);
-        }
+        isFilled = true;
 
-        spaceHint.SetActive(false);
+        countMatched++;
+        //if (countMatched == totalMatched)
+        //{
+            OnFilled?.Invoke(type);
+        //}
+    }
+
+    public void UnMatchSpectralBand(SampleSpectralBand sampleSpectralBand)
+    {
+        sampleSpectralBand.UnBlock();
+        isFilled = false;
+
+        countMatched--;
+        //if(countMatched == totalMatched)
+        //{
+            OnUnfilled?.Invoke(type);
+        //}
+
+        spaceHint.SetActive(true);
     }
 
     Color GetColor()
@@ -166,6 +184,8 @@ public class SpectralBandContainer : MonoBehaviour
     public void Reset()
     {
         countMatched = 0;
+        isFilled = false;
+        spaceHint.SetActive(false);
 
         UpdateState("inactive");
     }
@@ -185,6 +205,11 @@ public class SpectralBandContainer : MonoBehaviour
             {
                 spaceHint.SetActive(true);
             }
+            
+            if(grabbedObject == null && isFilled)
+            {
+                spaceHint.SetActive(true);
+            }
         }
     }
 
@@ -198,7 +223,7 @@ public class SpectralBandContainer : MonoBehaviour
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (countMatched > 0)
+        if (countMatched >= 0)
         {
             OnUnhover?.Invoke(type);
         }

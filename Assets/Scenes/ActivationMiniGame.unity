@@ -510,6 +510,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8747615313673477046, guid: 72013fef11c50734db318fb83fc9454d, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -3100,7 +3104,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6f718263822ffa640a5133b44eaf7f38, type: 2}
   - {fileID: 11400000, guid: 0b731c617ed791744a491f3fe93c23f6, type: 2}
   exitXPosition: 3
-  exitObject: {fileID: 8912301626592835870, guid: 1dcea3b240e62e44fbdcf3d868191058, type: 3}
+  exitObject: {fileID: 8912301626592835870, guid: 045394caf504cf942a8baa36360e8ff7, type: 3}
   Player: {fileID: 276642492}
   NPC: {fileID: 771225086}
   activationViewObject: {fileID: 358335291270236066, guid: b6025cfa414c5b74b904a4319f17277d, type: 3}

@@ -13,6 +13,7 @@ public class PlayableDirectorCallback : MonoBehaviour
     public GameObject transitionFloor;
 
     public DialogueBalloon dialogueBalloon;
+    public DialogueBalloon dialogueBalloonNoOne;
     public HintBalloon hintBalloon;
     List<(string, string)> screenplay = new List<(string, string)>();
     int currentLineIndex = -1;
@@ -26,10 +27,12 @@ public class PlayableDirectorCallback : MonoBehaviour
 
     void InitializeScreenplay()
     {
+        screenplay.Add(new("NoOne", "13th July, 2132. After the Global Climate Meltdown of 2054, scientists and engineers created the Big machine."));
+        screenplay.Add(new("NoOne", "An advanced space station design to survey Earth and respond to emergency situations. It has kept citizens safe for many years..."));
         screenplay.Add(new("NPC", "Hello, GeoAI Machinist.\nFeeling well?\nAre you prepared for your mission?"));
         screenplay.Add(new("Player", "What is going on?"));
         // screenplay.Add(new("NPC", "I'm your Robot Assistant, here to guide you. I'll provide all mission details shortly."));
-        screenplay.Add(new("NPC", "As the GeoAI Machinist, your mission is to maintain the Big Machine—a space station designed to survey Earth and respond to emergency situations."));
+        screenplay.Add(new("NPC", "As the GeoAI Machinist, your mission is to maintain the Big Machine."));
         // screenplay.Add(new("NPC", "Records indicate that Earth has entered another Heat Season, and the delicate balance necessary for the last humans to survive is in danger."));
         screenplay.Add(new("NPC", "A critical malfunction was detected in the Big Machine. The Artificial Intelligence... has gone offline. You must repair it."));
         screenplay.Add(new("NPC", "Without the AI functioning, the Big Machine cannot deploy the Help Pods to the RESIDENTIAL zones, which are suffering under extreme heat conditions."));
@@ -51,6 +54,7 @@ public class PlayableDirectorCallback : MonoBehaviour
             Player.TurnRight();
             NextLine();
             dialogueBalloon.OnDone += NextLine;
+            dialogueBalloonNoOne.OnDone += NextLine;
 
             Player.Disable();
         }
@@ -58,7 +62,6 @@ public class PlayableDirectorCallback : MonoBehaviour
 
     void NextLine()
     {
-        dialogueBalloon.isCinematic = true;
         //dialogueBalloon.Hide();
         currentLineIndex++;
 
@@ -69,6 +72,9 @@ public class PlayableDirectorCallback : MonoBehaviour
         }
 
         var line = screenplay[currentLineIndex];
+
+        if (line.Item1.Equals("NoOne")) dialogueBalloonNoOne.isCinematic = true;
+        else dialogueBalloon.isCinematic = true;
 
         if (line.Item1.Equals("NPC"))
         {
@@ -92,15 +98,36 @@ public class PlayableDirectorCallback : MonoBehaviour
                 FollowSpeaker(Player.gameObject);
             }
         }
+        else if(line.Item1.Equals("NoOne"))
+        {
+            dialogueBalloonNoOne.SetSpeaker(Player.gameObject);
+            dialogueBalloonNoOne.PlaceUpperRightNoOne();
+            if (HasSpeakerChanged())
+            {
+                FollowSpeaker(Player.gameObject);
+            }
+        }
 
-        dialogueBalloon.SetMessage(line.Item2);
+        if (line.Item1.Equals("NoOne"))
+        {
+            dialogueBalloonNoOne.SetMessage(line.Item2);
+            dialogueBalloonNoOne.Show();
+            dialogueBalloon.Hide();
+        }
+        else
+        {
+            dialogueBalloon.SetMessage(line.Item2);
+            dialogueBalloon.Show();
+            dialogueBalloonNoOne.Hide();
+        }
+            
         /*if (currentLineIndex < 2)
         {
             dialogueBalloon.ShowIntroduction();
         }
         else
         {*/
-            dialogueBalloon.Show();
+            
         //}
     }
 

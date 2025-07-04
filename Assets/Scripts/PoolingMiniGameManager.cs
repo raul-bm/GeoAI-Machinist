@@ -327,7 +327,7 @@ public class PoolingMiniGameManager : BaseBoard
         timedDialogueBalloon.SetSpeaker(Player.gameObject);
         timedDialogueBalloon.SetMessage(message);
         timedDialogueBalloon.PlaceUpperLeft();
-        timedDialogueBalloon.Show(3f);
+        timedDialogueBalloon.Show(7f);
 
         // NPC speaks message
         string robotMessage = "Oops, you need to connect only the best pooling function.";
@@ -348,6 +348,10 @@ public class PoolingMiniGameManager : BaseBoard
     protected override void GameOver()
     {
         GameManager.instance.solvedMinigames["Pooling 1"] = true;
-        GameManager.instance.StartOverviewScene();
+
+        Player.Enable();
+        cameraZoom.ChangeZoomTarget(Player.gameObject);
+
+        GameObject.FindGameObjectWithTag("Wormhole").GetComponent<Exit>().UnlockExit();
     }
 }

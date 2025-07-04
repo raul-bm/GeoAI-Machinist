@@ -369,7 +369,7 @@ public class ConvolutionalMiniGameManager : BaseBoard
         timedDialogueBalloon.SetSpeaker(Player.gameObject);
         timedDialogueBalloon.SetMessage(message);
         timedDialogueBalloon.PlaceUpperLeft();
-        timedDialogueBalloon.Show(3f);
+        timedDialogueBalloon.Show(7f);
         timedDialogueBalloon.OnDone += RegisterConvolutionalViewsMessages;
 
         // NPC speaks message
@@ -389,7 +389,11 @@ public class ConvolutionalMiniGameManager : BaseBoard
     protected override void GameOver()
     {
         GameManager.instance.solvedMinigames["Convolutional 1"] = true;
-        GameManager.instance.StartOverviewScene();
+
+        Player.Enable();
+        cameraZoom.ChangeZoomTarget(Player.gameObject);
+
+        GameObject.FindGameObjectWithTag("Wormhole").GetComponent<Exit>().UnlockExit();
     }
 
 }

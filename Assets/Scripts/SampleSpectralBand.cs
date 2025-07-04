@@ -71,6 +71,12 @@ public class SampleSpectralBand : MonoBehaviour
         boxCollider.enabled = false;
     }
 
+    public void UnBlock()
+    {
+        boxCollider = GetComponent<BoxCollider2D>();
+        boxCollider.enabled = true;
+    }
+
     public void LoadSprite(string address)
     {
         this.address = address;

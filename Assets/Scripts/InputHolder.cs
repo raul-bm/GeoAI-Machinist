@@ -10,6 +10,9 @@ public class InputHolder : MonoBehaviour
     private float horizontalOffset = 0.013f;
     int id = -1;
 
+    public bool filled = false;
+    private GameObject filledObject;
+
     [SerializeField] private GameObject spaceHint;
 
     public void Init(int newId)
@@ -82,12 +85,14 @@ public class InputHolder : MonoBehaviour
 
         OnAddedObject?.Invoke();
 
-        spaceHint.SetActive(false);
+        filled = true;
+        filledObject = inputObject;
     }
 
-    public void RemoveInputSample(SampleBox sampleBox)
+    public GameObject RemoveInputObject()
     {
-        // TODO
+        filled = false;
+        return filledObject;
     }
 
     public void DrawConnection()
@@ -121,6 +126,7 @@ public class InputHolder : MonoBehaviour
             GameObject grabbedObject = other.GetComponent<PlayerController>().grabbedObject;
 
             if (grabbedObject != null && CanAdd(grabbedObject)) spaceHint.SetActive(true);
+            else if (grabbedObject == null && filled) spaceHint.SetActive(true);
         }
     }
 
@@ -128,9 +134,7 @@ public class InputHolder : MonoBehaviour
     {
         if(other.CompareTag("Player"))
         {
-            GameObject grabbedObject = other.GetComponent<PlayerController>().grabbedObject;
-
-            if (grabbedObject != null) spaceHint.SetActive(false);
+            spaceHint.SetActive(false);
         }
     }
 }

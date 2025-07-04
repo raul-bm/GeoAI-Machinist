@@ -179,6 +179,10 @@ public class PoolingSolvedManager : BaseBoard
     protected override void GameOver()
     {
         GameManager.instance.solvedMinigames["Pooling 1"] = true;
-        GameManager.instance.StartOverviewScene();
+
+        Player.Enable();
+        cameraZoom.ChangeZoomTarget(Player.gameObject);
+
+        GameObject.FindGameObjectWithTag("Wormhole").GetComponent<SpriteRenderer>().color = Color.green;
     }
 }

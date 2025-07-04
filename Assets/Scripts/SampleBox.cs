@@ -18,6 +18,9 @@ public class SampleBox : MonoBehaviour
     private BoxCollider2D boxCollider;
 
     [SerializeField] private GameObject spaceHint;
+    [SerializeField] private GameObject[] borders;
+    [SerializeField] private Sprite borderRightSprite;
+    [SerializeField] private Sprite borderNeutralSprite;
 
     public void FitInContainer()
     {
@@ -30,6 +33,22 @@ public class SampleBox : MonoBehaviour
     {
         boxCollider = GetComponent<BoxCollider2D>();
         type = gameObject.name.Substring(0, gameObject.name.LastIndexOf("_"));
+    }
+
+    public void ChangeSpritesToRight()
+    {
+        foreach(var border in borders)
+        {
+            border.GetComponent<SpriteRenderer>().sprite = borderRightSprite;
+        }
+    }
+
+    public void ChangeSpritesToNeutral()
+    {
+        foreach (var border in borders)
+        {
+            border.GetComponent<SpriteRenderer>().sprite = borderNeutralSprite;
+        }
     }
 
     public void Block()

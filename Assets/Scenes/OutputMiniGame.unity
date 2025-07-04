@@ -1263,6 +1263,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 8747615313673477046, guid: 72013fef11c50734db318fb83fc9454d, type: 3}
+      propertyPath: m_SortingOrder
+      value: 0
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []
     m_AddedGameObjects: []
@@ -2781,6 +2785,37 @@ Transform:
   m_Children:
   - {fileID: 428171985}
   m_Father: {fileID: 2029260502}
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &863571476
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 863571477}
+  m_Layer: 0
+  m_Name: GameObject
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &863571477
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 863571476}
+  serializedVersion: 2
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 8.74, y: 8.61, z: 0.01728341}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &901422156
 GameObject:
@@ -5220,7 +5255,7 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 6f718263822ffa640a5133b44eaf7f38, type: 2}
   - {fileID: 11400000, guid: 0b731c617ed791744a491f3fe93c23f6, type: 2}
   exitXPosition: 3
-  exitObject: {fileID: 8912301626592835870, guid: 1dcea3b240e62e44fbdcf3d868191058, type: 3}
+  exitObject: {fileID: 8912301626592835870, guid: 045394caf504cf942a8baa36360e8ff7, type: 3}
   Player: {fileID: 503394038}
   NPC: {fileID: 653875758}
   denseViewObject: {fileID: 8043865356184850180, guid: 7090b32725d0b634d887ae542a775cfd, type: 3}
@@ -5232,6 +5267,7 @@ MonoBehaviour:
   hintBalloon: {fileID: 1314880659}
   flattenLayer: {fileID: 1830428055}
   outputLayer: {fileID: 1766820187}
+  gameObjectTemporal: {fileID: 863571476}
 --- !u!1 &1911200546
 GameObject:
   m_ObjectHideFlags: 0
@@ -5773,3 +5809,4 @@ SceneRoots:
   - {fileID: 423352116}
   - {fileID: 213436072}
   - {fileID: 358905938}
+  - {fileID: 863571477}

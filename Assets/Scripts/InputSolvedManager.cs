@@ -157,9 +157,12 @@ public class InputSolvedManager : BaseBoard
 
     protected override void GameOver()
     {
-        cameraZoom.ChangeZoomTarget(Player.gameObject);
         GameManager.instance.solvedMinigames["Input"] = true;
-        GameManager.instance.StartOverviewScene();
+
+        Player.Enable();
+        cameraZoom.ChangeZoomTarget(Player.gameObject);
+
+        GameObject.FindGameObjectWithTag("Wormhole").GetComponent<SpriteRenderer>().color = Color.green;
     }
 
 

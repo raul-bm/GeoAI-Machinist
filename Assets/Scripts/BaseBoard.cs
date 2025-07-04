@@ -68,7 +68,9 @@ public abstract class BaseBoard : MonoBehaviour
             m_Wallsmap.SetTile(new Vector3Int(x, y, 1), tile);
             return;
         }
-        Instantiate(exitObject, new Vector3(exitXPosition + 0.5f, 0.5f, 0f), Quaternion.identity);
+        GameObject exitGameObject = Instantiate(exitObject, new Vector3(exitXPosition + 0.5f, 0.5f, 0f), Quaternion.identity);
+
+        exitGameObject.GetComponent<Exit>().UnlockCollider();
     }
 
     protected Tile GetWallTile(int x, int y)

@@ -147,6 +147,8 @@ public class CommandCenterPlaybackDirector : MonoBehaviour
         hintBalloon.PlaceOver();
         hintBalloon.Show();
 
+        cameraZoom.ChangeZoomTarget(Player.gameObject);
+
         Player.Enable();
         commandCenter.OnActivated += NextLine;
     }

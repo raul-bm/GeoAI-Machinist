@@ -17,7 +17,7 @@ public class KernelPixel : MonoBehaviour
     public void SetKernelCenter()
     {
         tag = "KernelCenter";
-        GetComponent<BoxCollider2D>().size = new(0.1f, 0.1f);
+        GetComponent<BoxCollider2D>().size = new(3f, 3f);
     }
 
     private bool IsKernelCenter()

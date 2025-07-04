@@ -163,7 +163,8 @@ public class InputMiniGameManager : BaseBoard
             SpectralBandContainer spectralBandContainer = instance.GetComponent<SpectralBandContainer>();
             spectralBandContainer.SetType(bandTypes[i]);
             spectralBandContainer.DrawConnections(inputPosition: new(-3.9f, (float)Math.Ceiling(Height / 2f) - yPosition, 0f));
-            spectralBandContainer.OnFilled += CheckWinTurn;
+            spectralBandContainer.OnFilled += Match;
+            spectralBandContainer.OnUnfilled += Unmatch;
             spectralBandContainer.OnHover += DisplayMessage;
             spectralBandContainer.OnUnhover += HideMessage;
 
@@ -172,6 +173,16 @@ public class InputMiniGameManager : BaseBoard
     }
 
     private void CheckWinTurn(string type)
+    {
+        Turn current = turns[currentTurn];
+
+        if (current.AllCharacteristicSelected())
+        {
+            TurnOver();
+        }
+    }
+
+    private void Match(string type)
     {
         Turn current = turns[currentTurn];
         current.Match(type);
@@ -185,10 +196,17 @@ public class InputMiniGameManager : BaseBoard
             containers[type].UpdateState("wrong");
         }
 
-        if (current.AllCharacteristicSelected())
-        {
-            TurnOver();
-        }
+        CheckWinTurn(type);
+    }
+
+    private void Unmatch(string type)
+    {
+        Turn current = turns[currentTurn];
+        current.Unmatch(type);
+
+        containers[type].UpdateState("inactive");
+
+        CheckWinTurn(type);
     }
 
     private void DisplayMessage(string bandName)
@@ -199,7 +217,7 @@ public class InputMiniGameManager : BaseBoard
         timedDialogueBalloon.SetSpeaker(Player.gameObject);
         timedDialogueBalloon.SetMessage(message);
         timedDialogueBalloon.PlaceUpperLeft();
-        timedDialogueBalloon.Show();
+        timedDialogueBalloon.Show(5f);
     }
 
     private void DisplayTurnOverMessage()
@@ -245,6 +263,11 @@ public class InputMiniGameManager : BaseBoard
 
     private void DisplayGameOverMessage()
     {
+        CleanAllBands();
+        ResetContainers();
+        Player.grabbedObject = null;
+        timedDialogueBalloon.Hide();
+
         dialogueBalloon.isCinematic = true;
         string message = "Good job, now the Input Layer Room is fixed!";
         dialogueBalloon.SetSpeaker(NPC.gameObject);
@@ -258,9 +281,12 @@ public class InputMiniGameManager : BaseBoard
 
     protected override void GameOver()
     {
-        cameraZoom.ChangeZoomTarget(Player.gameObject);
         GameManager.instance.solvedMinigames["Input"] = true;
-        GameManager.instance.StartOverviewScene();
+
+        Player.Enable();
+        cameraZoom.ChangeZoomTarget(Player.gameObject);
+
+        GameObject.FindGameObjectWithTag("Wormhole").GetComponent<Exit>().UnlockExit();
     }
 
     private void ResetContainers()
@@ -307,6 +333,8 @@ public class InputMiniGameManager : BaseBoard
 
         CleanAllBands();
         ResetContainers();
+        Player.grabbedObject = null;
+        timedDialogueBalloon.Hide();
 
         currentTurn++;
         UpdateTurnCounter();

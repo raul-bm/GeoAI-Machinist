@@ -211,21 +211,35 @@ public class PlayerController : MonoBehaviour
 
     private void GrabSampleSpectralBand()
     {
-        if (nearObject == null || !nearObject.CompareTag("SpectralBand"))
+        if(nearObject.CompareTag("SpectralBand"))
         {
-            return;
+            animator.SetTrigger("playerGrab");
+            // Change scale
+            nearObject.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
+            // change box parent
+            GameObject playerObj = GameObject.Find("Player");
+            nearObject.transform.parent = playerObj.transform;
+            // get player position and Change box position
+            nearObject.transform.position = playerObj.transform.position;
+
+            grabbedObject = nearObject;
         }
+        else if(nearObject.CompareTag("SpectralBandContainer") && nearObject.GetComponent<SpectralBandContainer>().isFilled)
+        {
+            // Detect if the container has a spectral band inside to grab
+            animator.SetTrigger("playerGrab");
 
-        animator.SetTrigger("playerGrab");
-        // Change scale
-        nearObject.transform.localScale = new Vector3(0.5f, 0.5f, 0.5f);
-        // change box parent
-        GameObject playerObj = GameObject.Find("Player");
-        nearObject.transform.parent = playerObj.transform;
-        // get player position and Change box position
-        nearObject.transform.position = playerObj.transform.position;
+            GameObject playerObj = GameObject.Find("Player");
+            GameObject sampleSpectralBand = nearObject.transform.GetChild(nearObject.transform.childCount - 1).gameObject;
+            sampleSpectralBand.transform.parent = playerObj.transform;
 
-        grabbedObject = nearObject;
+            sampleSpectralBand.transform.position = playerObj.transform.position;
+
+            grabbedObject = sampleSpectralBand;
+
+            SpectralBandContainer container = nearObject.GetComponent<SpectralBandContainer>();
+            container.UnMatchSpectralBand(sampleSpectralBand.GetComponent<SampleSpectralBand>());
+        }
     }
 
     private void BreakSampleBox()
@@ -365,6 +379,29 @@ public class PlayerController : MonoBehaviour
         }
     }
 
+    private void UnfillInputHolder()
+    {
+        InputHolder inputHolder = nearObject.GetComponent<InputHolder>();
+        GameObject objectToGrab = inputHolder.RemoveInputObject();
+
+        Transform grabbeableObject = objectToGrab.transform;
+        animator.SetTrigger("playerGrab");
+
+        // Change scale
+        // change box parent
+        GameObject playerObj = GameObject.Find("Player");
+        grabbeableObject.parent = playerObj.transform;
+        // get player position and Change box position
+        grabbeableObject.position = playerObj.transform.position;
+
+        grabbedObject = grabbeableObject.gameObject;
+
+        grabbeableObject.GetComponent<KernelMatrix>().Grab(transform.position);
+
+        OnKernelGrabbed?.Invoke();
+
+    }
+
     private void FillLocker()
     {
         Locker locker = nearObject.GetComponent<Locker>();
@@ -477,7 +514,7 @@ public class PlayerController : MonoBehaviour
                     GrabSampleBox();
                 }
             }
-            else if (nearObject.CompareTag("SpectralBand"))
+            else if (nearObject.CompareTag("SpectralBand") || nearObject.CompareTag("SpectralBandContainer"))
             {
                 GrabSampleSpectralBand();
             }
@@ -485,7 +522,8 @@ public class PlayerController : MonoBehaviour
             {
                 nearObject.GetComponent<SelectorSwitch>().Switch();
             }
-            else if (nearObject.transform.parent && nearObject.transform.parent.CompareTag("Kernel"))
+            else if (nearObject.transform.parent && nearObject.transform.parent.CompareTag("Kernel") && (nearObject.transform.parent.parent == null || nearObject.transform.parent.parent.CompareTag("Locker")))
+            //else if(nearObject.CompareTag("Kernel"))
             {
                 GrabKernel();
             }
@@ -496,6 +534,10 @@ public class PlayerController : MonoBehaviour
             else if (nearObject.CompareTag("PoolingBox"))
             {
                 GrabPoolingBox();
+            }
+            else if (nearObject.CompareTag("InputHolder") && nearObject.GetComponent<InputHolder>().filled)
+            {
+                UnfillInputHolder();
             }
 
         }
