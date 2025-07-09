@@ -25,6 +25,9 @@ public class ConvolutionalMiniGameManager : BaseBoard
 
     public CameraZoom cameraZoom;
 
+    bool timerCounting = false;
+    float timerForFirebase;
+
     public TextAsset convDataText;
     ConvData data;
     [System.Serializable]
@@ -55,6 +58,13 @@ public class ConvolutionalMiniGameManager : BaseBoard
         ConvolutionalView.viewCounter = 0;
         UpdateProgress(0f);
         StartCoroutine(LayoutAll());
+    }
+
+    private void Update()
+    {
+        if (timerCounting && Time.timeScale == 1f) timerForFirebase += Time.deltaTime;
+
+        //if (Input.GetKeyDown(KeyCode.H)) Debug.Log(timerForFirebase);
     }
 
     void UpdateProgress(float progress)
@@ -127,6 +137,9 @@ public class ConvolutionalMiniGameManager : BaseBoard
         HintKernel();
         playbackDirector.StartAnimation();
         playbackDirector.OnEnd += SetupNPC;
+
+        timerForFirebase = 0f;
+        timerCounting = true;
     }
 
     void SetupNPC()
@@ -394,6 +407,9 @@ public class ConvolutionalMiniGameManager : BaseBoard
         cameraZoom.ChangeZoomTarget(Player.gameObject);
 
         GameObject.FindGameObjectWithTag("Wormhole").GetComponent<Exit>().UnlockExit();
+
+        timerCounting = false;
+        FirebaseManager.instance.UpdateLevel("Convolutional", timerForFirebase);
     }
 
 }

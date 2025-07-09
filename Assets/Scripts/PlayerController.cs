@@ -317,6 +317,8 @@ public class PlayerController : MonoBehaviour
 
     private void GrabKernel()
     {
+        Debug.Log("Grabbed");
+
         Transform grabbeableObject = nearObject.transform.parent;
         animator.SetTrigger("playerGrab");
 
@@ -396,7 +398,12 @@ public class PlayerController : MonoBehaviour
 
         grabbedObject = grabbeableObject.gameObject;
 
-        grabbeableObject.GetComponent<KernelMatrix>().Grab(transform.position);
+        if(grabbeableObject.GetComponent<KernelMatrix>() != null)
+            grabbeableObject.GetComponent<KernelMatrix>().Grab(transform.position);
+        else if(grabbeableObject.GetComponent<PoolingBox>() != null)
+            grabbeableObject.GetComponent<PoolingBox>().Grab(transform.position);
+        else if (grabbeableObject.GetComponent<ActivationBox>() != null)
+            grabbeableObject.GetComponent<ActivationBox>().Grab(transform.position);
 
         OnKernelGrabbed?.Invoke();
 

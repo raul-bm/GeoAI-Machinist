@@ -19,6 +19,9 @@ public class PoolingMiniGameManager : BaseBoard
     public DialogueBalloon dialogueBalloon;
     public CameraZoom cameraZoom;
 
+    bool timerCounting = false;
+    float timerForFirebase;
+
     // Data
     public TextAsset dataText;
     PoolingData data;
@@ -48,6 +51,13 @@ public class PoolingMiniGameManager : BaseBoard
     {
         UpdateProgress(0f);
         StartCoroutine(LayoutAll());
+    }
+
+    private void Update()
+    {
+        if (timerCounting && Time.timeScale == 1f) timerForFirebase += Time.deltaTime;
+
+        //if (Input.GetKeyDown(KeyCode.H)) Debug.Log(timerForFirebase);
     }
 
     void UpdateProgress(float progress)
@@ -124,6 +134,9 @@ public class PoolingMiniGameManager : BaseBoard
         loadingScreen.SetActive(false);
         playbackDirector.StartAnimation();
         playbackDirector.OnEnd += SetupNPC;
+
+        timerForFirebase = 0f;
+        timerCounting = true;
     }
 
     void SetupNPC()
@@ -353,5 +366,8 @@ public class PoolingMiniGameManager : BaseBoard
         cameraZoom.ChangeZoomTarget(Player.gameObject);
 
         GameObject.FindGameObjectWithTag("Wormhole").GetComponent<Exit>().UnlockExit();
+
+        timerCounting = false;
+        FirebaseManager.instance.UpdateLevel("Pooling", timerForFirebase);
     }
 }

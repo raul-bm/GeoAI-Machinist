@@ -13,7 +13,8 @@ public class PlayableDirectorCallback : MonoBehaviour
     public GameObject transitionFloor;
 
     public DialogueBalloon dialogueBalloon;
-    public DialogueBalloon dialogueBalloonNoOne;
+    public UIDialogueBalloon dialogueBalloonNoOne;
+    public Animator animatorDialogueBalloonNoOne;
     public HintBalloon hintBalloon;
     List<(string, string)> screenplay = new List<(string, string)>();
     int currentLineIndex = -1;
@@ -27,8 +28,10 @@ public class PlayableDirectorCallback : MonoBehaviour
 
     void InitializeScreenplay()
     {
-        screenplay.Add(new("NoOne", "13th July, 2132. After the Global Climate Meltdown of 2054, scientists and engineers created the Big machine."));
-        screenplay.Add(new("NoOne", "An advanced space station design to survey Earth and respond to emergency situations. It has kept citizens safe for many years..."));
+        screenplay.Add(new("actionShowIntroduction", ""));
+        screenplay.Add(new("NoOne", "13th July, 2132.\n\nAfter the Global Climate Meltdown of 2054, scientists and engineers created the Big machine.\n\nAn advanced space station design to survey Earth and respond to emergency situations. It has kept citizens safe for many years..."));  
+        screenplay.Add(new("actionDissapearIntroduction", ""));
+        screenplay.Add(new("zoom", ""));
         screenplay.Add(new("NPC", "Hello, GeoAI Machinist.\nFeeling well?\nAre you prepared for your mission?"));
         screenplay.Add(new("Player", "What is going on?"));
         // screenplay.Add(new("NPC", "I'm your Robot Assistant, here to guide you. I'll provide all mission details shortly."));
@@ -49,8 +52,6 @@ public class PlayableDirectorCallback : MonoBehaviour
     {
         if (director == aDirector)
         {
-            ZoomIn();
-
             Player.TurnRight();
             NextLine();
             dialogueBalloon.OnDone += NextLine;
@@ -76,7 +77,15 @@ public class PlayableDirectorCallback : MonoBehaviour
         if (line.Item1.Equals("NoOne")) dialogueBalloonNoOne.isCinematic = true;
         else dialogueBalloon.isCinematic = true;
 
-        if (line.Item1.Equals("NPC"))
+        if (line.Item1.Equals("actionShowIntroduction"))
+        {
+            animatorDialogueBalloonNoOne.Play("AppearIntroductionText");
+        }
+        else if (line.Item1.Equals("actionDissapearIntroduction"))
+        {
+            animatorDialogueBalloonNoOne.Play("DisappearIntroductionText");
+        }
+        else if (line.Item1.Equals("NPC"))
         {
             dialogueBalloon.SetSpeaker(NPC.gameObject);
             dialogueBalloon.PlaceUpperRight();
@@ -100,25 +109,28 @@ public class PlayableDirectorCallback : MonoBehaviour
         }
         else if(line.Item1.Equals("NoOne"))
         {
-            dialogueBalloonNoOne.SetSpeaker(Player.gameObject);
-            dialogueBalloonNoOne.PlaceUpperRightNoOne();
-            if (HasSpeakerChanged())
-            {
-                FollowSpeaker(Player.gameObject);
-            }
+            //dialogueBalloonNoOne.SetSpeaker(Player.gameObject);
+            //dialogueBalloonNoOne.PlaceUpperRightNoOne();
+            //if (HasSpeakerChanged())
+            //{
+            //    FollowSpeaker(Player.gameObject);
+            //}
         }
 
-        if (line.Item1.Equals("NoOne"))
-        {
-            dialogueBalloonNoOne.SetMessage(line.Item2);
-            dialogueBalloonNoOne.Show();
-            dialogueBalloon.Hide();
-        }
-        else
+        if (!line.Item1.Equals("NoOne") && !line.Item1.Equals("actionShowIntroduction") && !line.Item1.Equals("actionDissapearIntroduction") && !line.Item1.Equals("zoom"))
         {
             dialogueBalloon.SetMessage(line.Item2);
             dialogueBalloon.Show();
-            dialogueBalloonNoOne.Hide();
+        }
+        else if(line.Item1.Equals("NoOne"))
+        {
+            dialogueBalloonNoOne.SetMessage(line.Item2);
+            dialogueBalloonNoOne.Show();
+        }
+        else if(line.Item1.Equals("zoom"))
+        {
+            ZoomIn();
+            NextLine();
         }
             
         /*if (currentLineIndex < 2)
@@ -201,5 +213,10 @@ public class PlayableDirectorCallback : MonoBehaviour
     void OnDisable()
     {
         director.stopped -= OnPlayableDirectorStopped;
+    }
+
+    public void OnEndIntroductionAnimations()
+    {
+        NextLine();
     }
 }

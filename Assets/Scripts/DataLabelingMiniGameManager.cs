@@ -22,6 +22,9 @@ public class DataLabelingMiniGameManager : BaseBoard
     private List<Vector3> gridPositions = new List<Vector3>();
     Exit exitScript;
 
+    bool timerCounting = false;
+    float timerForFirebase;
+
     // Start is called before the first frame update
     void Start()
     {
@@ -59,6 +62,16 @@ public class DataLabelingMiniGameManager : BaseBoard
         LayoutSampleAtRandom();
 
         // UIHandler.Instance.RegisterContainers();
+
+        timerForFirebase = 0f;
+        timerCounting = true;
+    }
+
+    private void Update()
+    {
+        if(timerCounting && Time.timeScale == 1f) timerForFirebase += Time.deltaTime;
+
+        //if (Input.GetKeyDown(KeyCode.H)) Debug.Log(timerForFirebase);
     }
 
     protected new bool IsExit(int x, int y)
@@ -257,6 +270,9 @@ public class DataLabelingMiniGameManager : BaseBoard
 
     void HintExit()
     {
+        timerCounting = false;
+        FirebaseManager.instance.UpdateLevel("DataLabeling", timerForFirebase);
+
         DisplayPhaseOverMessage();
         NPC.OnHover += DisplayPhaseOverMessage;
         StartCoroutine(HintExitCoroutine());

@@ -14,6 +14,9 @@ public class OutputMiniGameManager : BaseBoard
     public DialogueBalloon dialogueBalloon;
     public CameraZoom cameraZoom;
 
+    bool timerCounting = false;
+    float timerForFirebase;
+
     public HintBalloon hintBalloon;
 
     // Instances
@@ -67,6 +70,16 @@ public class OutputMiniGameManager : BaseBoard
         playbackDirector.StartAnimation();
         flattenLayer.OnFlatten += StartAnimationDenseView;
         outputLayer.OnDone += DisplayGameOver;
+
+        timerForFirebase = 0f;
+        timerCounting = true;
+    }
+
+    private void Update()
+    {
+        if (timerCounting && Time.timeScale == 1f) timerForFirebase += Time.deltaTime;
+
+        //if (Input.GetKeyDown(KeyCode.H)) Debug.Log(timerForFirebase);
     }
 
     void LayoutDenseView()
@@ -168,6 +181,9 @@ public class OutputMiniGameManager : BaseBoard
         StartCoroutine(AnimateGameOver());
 
         GameObject.FindGameObjectWithTag("Wormhole").GetComponent<Exit>().UnlockExit();
+
+        timerCounting = false;
+        FirebaseManager.instance.UpdateLevel("Output", timerForFirebase);
 
         GameManager.instance.solvedMinigames["Output"] = true;
 

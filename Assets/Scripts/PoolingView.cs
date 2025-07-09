@@ -208,7 +208,12 @@ public class PoolingView : MonoBehaviour
                     inputMatrix.GetPixelValue(i+1,j+1)
                 };
 
-                double poolingResult = poolingBox.ApplyFunction(listPixels);
+                double poolingResult;
+
+                if(type == "Max")
+                    poolingResult = poolingBox.ApplyFunction(listPixels) * 1.5;
+                else
+                    poolingResult = poolingBox.ApplyFunction(listPixels);
 
                 // retrieve the pixel from the output matrix
                 // change its value and color

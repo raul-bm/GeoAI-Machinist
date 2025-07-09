@@ -21,6 +21,9 @@ public class InputMiniGameManager : BaseBoard
     public HintBalloon hintBalloon;
     public CameraZoom cameraZoom;
 
+    bool timerCounting = false;
+    float timerForFirebase;
+
     private List<string> bandTypes = new List<string> { "red", "green", "blue", "redEdge" };
 
     TeleportationDevice teleportationDevice;
@@ -72,6 +75,16 @@ public class InputMiniGameManager : BaseBoard
 
         playbackDirector.OnEnd += DisplayMessageOnHoverNPC;
         UpdateTurnCounter();
+
+        timerForFirebase = 0f;
+        timerCounting = true;
+    }
+
+    private void Update()
+    {
+        if (timerCounting && Time.timeScale == 1f) timerForFirebase += Time.deltaTime;
+
+        //if (Input.GetKeyDown(KeyCode.H)) Debug.Log(timerForFirebase);
     }
 
     private void UpdateTurnCounter()
@@ -287,6 +300,9 @@ public class InputMiniGameManager : BaseBoard
         cameraZoom.ChangeZoomTarget(Player.gameObject);
 
         GameObject.FindGameObjectWithTag("Wormhole").GetComponent<Exit>().UnlockExit();
+
+        timerCounting = false;
+        FirebaseManager.instance.UpdateLevel("Input", timerForFirebase);
     }
 
     private void ResetContainers()

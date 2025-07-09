@@ -88,7 +88,7 @@ GameObject:
   - component: {fileID: 4325382122557659385}
   - component: {fileID: 3067181683184245498}
   m_Layer: 0
-  m_Name: Q-Button
+  m_Name: Z-Button
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0
@@ -141,7 +141,7 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 1547003160, guid: a51f376ad1950ec40ae7116f0d57733b, type: 3}
+  m_Sprite: {fileID: -1304835122, guid: a51f376ad1950ec40ae7116f0d57733b, type: 3}
   m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
