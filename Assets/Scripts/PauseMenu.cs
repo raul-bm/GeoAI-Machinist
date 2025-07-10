@@ -16,6 +16,8 @@ public class PauseMenu : MonoBehaviour
     [SerializeField] private TextMeshProUGUI minZoomValueText;
     [SerializeField] private TextMeshProUGUI maxZoomValueText;
 
+    [SerializeField] private GameObject zoomHint;
+
     private bool isPaused = false;
 
     void Start()
@@ -41,6 +43,8 @@ public class PauseMenu : MonoBehaviour
         Time.timeScale = 0;
 
         menuAnimator.Play("PauseMenuAppears");
+
+        zoomHint.SetActive(false);
     }
 
     public void GameResumed()
@@ -53,6 +57,8 @@ public class PauseMenu : MonoBehaviour
         controls.SetActive(false);
         isPaused = false;
         Time.timeScale = 1;
+
+        zoomHint.SetActive(true);
     }
 
     // Method for the button "Resume"

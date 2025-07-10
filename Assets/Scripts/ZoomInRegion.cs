@@ -19,7 +19,7 @@ public class ZoomInRegion : MonoBehaviour
     public CameraZoom cameraZoom;
     public GameObject canvasZoomHint;
 
-    private void OnTriggerEnter2D(Collider2D other)
+    /*private void OnTriggerEnter2D(Collider2D other)
     {
         if (other.CompareTag("Player") && cameraZoom.zoomState != ZoomState.zoomIn)
         {
@@ -33,5 +33,5 @@ public class ZoomInRegion : MonoBehaviour
         {
             canvasZoomHint.SetActive(false);
         }
-    }
+    }*/
 }

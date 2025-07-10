@@ -58,7 +58,7 @@ public class CommandCenterPlaybackDirector : MonoBehaviour
     void InitializeScreenplay()
     {
         screenplay = new List<(string, string)>() {
-        new("NPC", "Thanks to you the AI core is fully functional. Time to dispatch the Help Pods."),
+        new("NPC", "Thanks to you the AI core is fully functional. Time to dispatch the Help Pods. Press \"SPACE\" on the computer."),
         new("action", "action1"), // Hint CommandCenter and wait for activation
         new("action", "action2") // Play GameOver animation
         };
@@ -141,6 +141,8 @@ public class CommandCenterPlaybackDirector : MonoBehaviour
     void HintCommandCenter()
     {
         ZoomOut();
+
+        hintBalloon.gameObject.SetActive(true);
 
         hintBalloon.SetSpaceKey();
         hintBalloon.SetTarget(commandCenter.gameObject);

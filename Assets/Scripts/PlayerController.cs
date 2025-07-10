@@ -272,14 +272,17 @@ public class PlayerController : MonoBehaviour
         if (grabbedObject.CompareTag("Kernel"))
         {
             grabbedObject.transform.localScale = new Vector3(0.2f, 0.2f, 1f);
+            grabbedObject.GetComponent<KernelMatrix>().grabbed = false;
         }
         else if (grabbedObject.CompareTag("ActivationBox"))
         {
             grabbedObject.transform.localScale = new Vector3(0.6f, 0.6f, 1f);
+            grabbedObject.GetComponent<ActivationBox>().grabbed = false;
         }
         else if (grabbedObject.CompareTag("PoolingBox"))
         {
             grabbedObject.transform.localScale = new Vector3(0.6f, 0.6f, 1f);
+            grabbedObject.GetComponent<PoolingBox>().grabbed = false;
         }
         // change box parent
         grabbedObject.transform.parent = null;
@@ -377,6 +380,14 @@ public class PlayerController : MonoBehaviour
         if (inputHolder.CanAdd(grabbedObject))
         {
             inputHolder.AddInputObject(grabbedObject);
+
+            if (grabbedObject.GetComponent<KernelMatrix>() != null)
+                grabbedObject.GetComponent<KernelMatrix>().grabbed = false;
+            else if (grabbedObject.GetComponent<PoolingBox>() != null)
+                grabbedObject.GetComponent<PoolingBox>().grabbed = false;
+            else if (grabbedObject.GetComponent<ActivationBox>() != null)
+                grabbedObject.GetComponent<ActivationBox>().grabbed = false;
+
             grabbedObject = null;
         }
     }
@@ -419,12 +430,15 @@ public class PlayerController : MonoBehaviour
             {
                 case "Kernel":
                     locker.AddKernel(grabbedObject);
+                    grabbedObject.GetComponent<KernelMatrix>().grabbed = false;
                     break;
                 case "ActivationBox":
                     locker.AddActivationBox(grabbedObject);
+                    grabbedObject.GetComponent<ActivationBox>().grabbed = false;
                     break;
                 case "PoolingBox":
                     locker.AddPoolingBox(grabbedObject);
+                    grabbedObject.GetComponent<PoolingBox>().grabbed = false;
                     break;
             }
             grabbedObject = null;

@@ -207,6 +207,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sprite: {fileID: 21300000, guid: 3586189fb3410174082bf8571a49d01a, type: 3}
+  isFilled: 0
   spaceHint: {fileID: 6086666912275425753}
 --- !u!50 &7324930840998400599
 Rigidbody2D:
@@ -760,8 +761,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1531055085
-  m_SortingLayer: 6
+  m_SortingLayerID: 27589227
+  m_SortingLayer: 2
   m_SortingOrder: -1
   m_Sprite: {fileID: -1281467460, guid: ec40f6d89796efa40a9859bd94b9c7e3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

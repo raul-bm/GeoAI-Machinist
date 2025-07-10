@@ -7,6 +7,7 @@ using UnityEngine.Networking;
 [Serializable]
 public class FirestoreData
 {
+    public StringValue Nickname;
     public TimestampValue Date;
     public DoubleValue LevelDataLabeling;
     public DoubleValue LevelInput;
@@ -17,6 +18,7 @@ public class FirestoreData
 }
 
 [Serializable] public class TimestampValue { public string timestampValue; }
+[Serializable] public class StringValue { public string stringValue; }
 [Serializable] public class DoubleValue { public double doubleValue; }
 
 [Serializable]
@@ -54,6 +56,8 @@ public class FirebaseManager : MonoBehaviour
 
     private void Awake()
     {
+        if (FirebaseManager.instance != null) Destroy(FirebaseManager.instance.gameObject);
+
         instance = this;
     }
 
@@ -114,6 +118,7 @@ public class FirebaseManager : MonoBehaviour
 
         var data = new FirestoreData
         {
+            Nickname = new StringValue { stringValue = PlayerPrefs.GetString("nickname") },
             Date = new TimestampValue { timestampValue = DateTime.UtcNow.ToString("o") },
             LevelDataLabeling = new DoubleValue { doubleValue = 0 },
             LevelInput = new DoubleValue { doubleValue = 0 },

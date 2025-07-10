@@ -3,15 +3,20 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Threading;
 using TMPro;
+using Unity.VisualScripting;
 using UnityEngine;
 
 public class KernelMatrix : MonoBehaviour
 {
     public Action OnGrabbed;
+
+    public Action<int> OnHover;
+    public Action<int> OnUnhover;
+
     public float pixelSize = ConvolutionalMiniGameManager.pixelSize;
 
     private int id = -1;
-    private bool grabbed = false;
+    public bool grabbed = false;
     private KernelPixel center;
     KernelPixel[] kernelPixels;
     Vector3 target;
@@ -152,6 +157,8 @@ public class KernelMatrix : MonoBehaviour
                 timer = 0f;
             }
         }
+
+        if (grabbed) OnUnhover?.Invoke(id);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -162,6 +169,8 @@ public class KernelMatrix : MonoBehaviour
 
             if (grabbedObject == null && (this.transform.parent == null || !this.transform.parent.CompareTag("InputHolder"))) spaceHint.SetActive(true);
         }
+
+        if (!grabbed) OnHover?.Invoke(id);
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -172,5 +181,12 @@ public class KernelMatrix : MonoBehaviour
 
             if (grabbedObject == null) spaceHint.SetActive(false);
         }
+
+        if (!grabbed) OnUnhover?.Invoke(id);
+    }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (!grabbed) OnHover?.Invoke(id);
     }
 }

@@ -8,7 +8,11 @@ using UnityEngine;
 public class ActivationBox : MonoBehaviour
 {
     public Action OnGrabbed;
-    private bool grabbed = false;
+
+    public Action<string> OnHover;
+    public Action<string> OnUnhover;
+
+    public bool grabbed = false;
 
     // Blink
     public GameObject outline;
@@ -147,6 +151,8 @@ public class ActivationBox : MonoBehaviour
                 timer = 0f;
             }
         }
+
+        if (grabbed) OnUnhover?.Invoke(type);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
@@ -157,6 +163,8 @@ public class ActivationBox : MonoBehaviour
 
             if (grabbedObject == null) spaceHint.SetActive(true);
         }
+
+        if (!grabbed) OnHover?.Invoke(type);
     }
 
     private void OnTriggerExit2D(Collider2D other)
@@ -167,6 +175,13 @@ public class ActivationBox : MonoBehaviour
 
             if (grabbedObject == null) spaceHint.SetActive(false);
         }
+
+        if (!grabbed) OnUnhover?.Invoke(type);
+    }
+
+    private void OnTriggerStay2D(Collider2D other)
+    {
+        if (!grabbed) OnHover?.Invoke(type);
     }
 
 }

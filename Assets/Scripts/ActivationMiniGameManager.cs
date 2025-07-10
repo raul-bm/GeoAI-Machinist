@@ -161,6 +161,8 @@ public class ActivationMiniGameManager : BaseBoard
         {
             entry.Value.OnHover -= DisplayActivationFunctionMessage;
             entry.Value.OnUnhover -= HideActivationFunctionMessage;
+            entry.Value.activationBox.OnHover -= DisplayActivationFunctionMessage;
+            entry.Value.activationBox.OnUnhover -= HideActivationFunctionMessage;
         }
     }
 
@@ -170,6 +172,8 @@ public class ActivationMiniGameManager : BaseBoard
         {
             entry.Value.OnHover += DisplayActivationFunctionMessage;
             entry.Value.OnUnhover += HideActivationFunctionMessage;
+            entry.Value.activationBox.OnHover += DisplayActivationFunctionMessage;
+            entry.Value.activationBox.OnUnhover += HideActivationFunctionMessage;
         }
     }
 
@@ -362,12 +366,39 @@ public class ActivationMiniGameManager : BaseBoard
     {
         GameManager.instance.solvedMinigames["Activation 1"] = true;
 
-        Player.Enable();
-        cameraZoom.ChangeZoomTarget(Player.gameObject);
+        StartCoroutine(AnimateGameOverFinal());
 
         GameObject.FindGameObjectWithTag("Wormhole").GetComponent<Exit>().UnlockExit();
 
         timerCounting = false;
         FirebaseManager.instance.UpdateLevel("Activation", timerForFirebase);
+    }
+
+    IEnumerator AnimateGameOverFinal()
+    {
+        dialogueBalloon.Hide();
+        ZoomOut();
+        yield return new WaitForSeconds(1.5f);
+        cameraZoom.ChangeZoomTarget(GameObject.FindGameObjectWithTag("Wormhole"));
+        ZoomIn();
+
+        yield return new WaitForSeconds(1.5f);
+        ZoomOut();
+        yield return new WaitForSeconds(1.5f);
+
+        // Message to get out
+        string message = "I'm all done here, let's head for the exit!";
+        timedDialogueBalloon.SetSpeaker(Player.gameObject);
+        timedDialogueBalloon.SetMessage(message);
+        timedDialogueBalloon.PlaceUpperLeft();
+        timedDialogueBalloon.Show(5f);
+
+        Player.Enable();
+        cameraZoom.ChangeZoomTarget(Player.gameObject);
+    }
+
+    public void ZoomOut(float zoom = 5f)
+    {
+        cameraZoom.ChangeZoomSmooth(zoom);
     }
 }

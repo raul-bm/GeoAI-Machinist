@@ -21,6 +21,8 @@ public class InputMiniGameManager : BaseBoard
     public HintBalloon hintBalloon;
     public CameraZoom cameraZoom;
 
+    bool gameOver = false;
+
     bool timerCounting = false;
     float timerForFirebase;
 
@@ -35,6 +37,14 @@ public class InputMiniGameManager : BaseBoard
         new(0, "River", new List<string>{"redEdge"}, "Choose ONE spectral band to reveal characteristics of a River and place it in the correct container."),
         new(1, "Highway", new List<string>{"blue"}, "Choose ONE spectral band to analyze a Highway, which is a man-made feature surrounded by vegetation or water."),
         new(2, "Residential", new List<string>{"red", "blue", "redEdge"}, "We need a band combination with THREE spectral bands to analyze a Residential area."),
+    };
+
+    private Dictionary<string, string> bandMessages = new Dictionary<string, string>()
+    {
+        { "red", "The Red band is useful for identifying urban areas, vegetation types, and soils." },
+        { "blue", "The Blue band is useful for identifying man-made features and soil and vegetation discrimination." },
+        { "redEdge", "The Red Edge spectral band helps to determine high reflectance on vegetation and low reflectance on buildings." },
+        { "green", "The Green band helps spot healthy vegetation, and it also helps to identify water and built-up areas." }
     };
 
     int currentTurn = 0;
@@ -179,6 +189,7 @@ public class InputMiniGameManager : BaseBoard
             spectralBandContainer.OnFilled += Match;
             spectralBandContainer.OnUnfilled += Unmatch;
             spectralBandContainer.OnHover += DisplayMessage;
+            spectralBandContainer.OnHoverNotFilled += DisplayMessageNotFilled;
             spectralBandContainer.OnUnhover += HideMessage;
 
             containers[bandTypes[i]] = spectralBandContainer;
@@ -233,6 +244,18 @@ public class InputMiniGameManager : BaseBoard
         timedDialogueBalloon.Show(5f);
     }
 
+    private void DisplayMessageNotFilled(string bandName)
+    {
+        if(!gameOver)
+        {
+            string message = bandMessages[bandName];
+            timedDialogueBalloon.SetSpeaker(Player.gameObject);
+            timedDialogueBalloon.SetMessage(message);
+            timedDialogueBalloon.PlaceUpperLeft();
+            timedDialogueBalloon.Show(5f);
+        }
+    }
+
     private void DisplayTurnOverMessage()
     {
         StartCoroutine(showTurnOverMessage());
@@ -271,7 +294,7 @@ public class InputMiniGameManager : BaseBoard
 
     private void HideMessage(string bandName)
     {
-        timedDialogueBalloon.Hide();
+        if(!gameOver) timedDialogueBalloon.Hide();
     }
 
     private void DisplayGameOverMessage()
@@ -294,15 +317,39 @@ public class InputMiniGameManager : BaseBoard
 
     protected override void GameOver()
     {
+        gameOver = true;
+
         GameManager.instance.solvedMinigames["Input"] = true;
 
-        Player.Enable();
-        cameraZoom.ChangeZoomTarget(Player.gameObject);
+        StartCoroutine(AnimateGameOver());
 
         GameObject.FindGameObjectWithTag("Wormhole").GetComponent<Exit>().UnlockExit();
 
         timerCounting = false;
         FirebaseManager.instance.UpdateLevel("Input", timerForFirebase);
+    }
+
+    IEnumerator AnimateGameOver()
+    {
+        dialogueBalloon.Hide();
+        ZoomOut();
+        yield return new WaitForSeconds(1.5f);
+        cameraZoom.ChangeZoomTarget(GameObject.FindGameObjectWithTag("Wormhole"));
+        ZoomIn();
+
+        yield return new WaitForSeconds(1.5f);
+        ZoomOut();
+        yield return new WaitForSeconds(1.5f);
+
+        // Message to get out
+        string message = "I'm all done here, let's head for the exit!";
+        timedDialogueBalloon.SetSpeaker(Player.gameObject);
+        timedDialogueBalloon.SetMessage(message);
+        timedDialogueBalloon.PlaceUpperLeft();
+        timedDialogueBalloon.Show(5f);
+
+        Player.Enable();
+        cameraZoom.ChangeZoomTarget(Player.gameObject);
     }
 
     private void ResetContainers()

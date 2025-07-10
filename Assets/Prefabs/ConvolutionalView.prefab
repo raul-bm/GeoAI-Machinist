@@ -437,6 +437,14 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 4708530430263164982, guid: 04c406387d8836f4b8a8f0aa53fc8b63, type: 3}
+      propertyPath: m_SortingLayer
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 4708530430263164982, guid: 04c406387d8836f4b8a8f0aa53fc8b63, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1956716917
+      objectReference: {fileID: 0}
     - target: {fileID: 8700647280722168030, guid: 04c406387d8836f4b8a8f0aa53fc8b63, type: 3}
       propertyPath: m_Name
       value: InputHolder
@@ -693,6 +701,14 @@ PrefabInstance:
     - target: {fileID: 4830342893046813791, guid: 3c128c2d6db34e740b342a58d7045c63, type: 3}
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
+      objectReference: {fileID: 0}
+    - target: {fileID: 6026932090300759457, guid: 3c128c2d6db34e740b342a58d7045c63, type: 3}
+      propertyPath: m_SortingLayer
+      value: 4
+      objectReference: {fileID: 0}
+    - target: {fileID: 6026932090300759457, guid: 3c128c2d6db34e740b342a58d7045c63, type: 3}
+      propertyPath: m_SortingLayerID
+      value: -1956716917
       objectReference: {fileID: 0}
     m_RemovedComponents: []
     m_RemovedGameObjects: []

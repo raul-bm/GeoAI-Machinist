@@ -345,6 +345,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: ea7bd1833da6ae44b8e161c847a4e9f4, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  grabbed: 0
   outline: {fileID: 3723829386810748420}
   spaceHint: {fileID: 9058223422087834717}
 --- !u!1 &7358814752454260342
@@ -589,8 +590,8 @@ SpriteRenderer:
   m_AutoUVMaxDistance: 0.5
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
-  m_SortingLayerID: -1531055085
-  m_SortingLayer: 6
+  m_SortingLayerID: -1956716917
+  m_SortingLayer: 4
   m_SortingOrder: -1
   m_Sprite: {fileID: -1281467460, guid: ec40f6d89796efa40a9859bd94b9c7e3, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}

@@ -15,6 +15,7 @@ using UnityEngine;
 public class SpectralBandContainer : MonoBehaviour
 {
     public event Action<string> OnHover;
+    public event Action<string> OnHoverNotFilled;
     public event Action<string> OnUnhover;
     string type;
 
@@ -196,6 +197,10 @@ public class SpectralBandContainer : MonoBehaviour
         {
             OnHover?.Invoke(type);
         }
+        else
+        {
+            OnHoverNotFilled?.Invoke(type);
+        }
 
         if(other.CompareTag("Player"))
         {
@@ -219,14 +224,15 @@ public class SpectralBandContainer : MonoBehaviour
         {
             OnHover?.Invoke(type);
         }
+        else
+        {
+            OnHoverNotFilled?.Invoke(type);
+        }
     }
 
     private void OnTriggerExit2D(Collider2D other)
     {
-        if (countMatched >= 0)
-        {
-            OnUnhover?.Invoke(type);
-        }
+        OnUnhover?.Invoke(type);
 
         if(other.CompareTag("Player"))
         {

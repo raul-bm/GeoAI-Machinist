@@ -180,12 +180,14 @@ public class OutputMiniGameManager : BaseBoard
         dialogueBalloon.OnDone -= GameOver;
         StartCoroutine(AnimateGameOver());
 
+        GameManager.instance.solvedMinigames["Output"] = true;
+
         GameObject.FindGameObjectWithTag("Wormhole").GetComponent<Exit>().UnlockExit();
 
         timerCounting = false;
         FirebaseManager.instance.UpdateLevel("Output", timerForFirebase);
 
-        GameManager.instance.solvedMinigames["Output"] = true;
+        
 
         // Player.Enable();
         // cameraZoom.ChangeZoomTarget(Player.gameObject);
